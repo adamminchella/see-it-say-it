@@ -7,6 +7,8 @@ const surprises = document.querySelector(".surprises");
 const commentsHeader = document.querySelector(".comments-header");
 const commentsContainer = document.querySelector(".comments-container");
 
+const emojis = document.querySelectorAll(".emoji-container");
+
 async function fetchData(postId) {
   const url = `http://localhost:3000/api/posts/${postId}`;
   let postData;
@@ -66,5 +68,49 @@ async function displayPostData() {
   displayTitleData(postData);
   displayComments(commentData);
 }
+
+emojis.forEach((emoji) => {
+  emoji.addEventListener("click", () => {
+    const emojiTypeClass = emoji.children[1].classList;
+    const url = `http://localhost:3000/api/posts/efgh/emojis`;
+    if (emojiTypeClass.contains("likes")) {
+      fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ emoji: "like" }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          likes.textContent = data.emojis.like;
+        });
+    } else if (emojiTypeClass.contains("dislikes")) {
+      fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ emoji: "dislike" }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          dislikes.textContent = data.emojis.dislike;
+        });
+    } else if (emojiTypeClass.contains("surprises")) {
+      fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ emoji: "surprise" }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          surprises.textContent = data.emojis.surprise;
+        });
+    }
+  });
+});
 
 window.addEventListener("load", displayPostData);

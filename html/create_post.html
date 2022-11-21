@@ -15,84 +15,88 @@
         <nav>
             <div id="logo">
                 <a href="#">
-                    <img src="Images/Blog_logo .png" alt="See it, Say it logo">
+                    <!-- <img src="Images/Blog_logo .png" alt="See it, Say it logo"> -->
                 </a>
             </div>
         </nav>
     </header>
+<main>
     <form>
-        <div> Please fill in the form below to create a new blog post:</div>
-        <section id="title">
-            <label for="titleInput">Title:</label>
+        <h2>Please fill in the form below to create a new blog post:</h2>
+        <section id="title" class="entry">
+            <label for="titleInput">Please enter a <b>title</b> for your post: <i>(Max 200 characters)</i></label>
+            <br>
             <input type="text" name="titleInput" id="">
-            <p>Please neter a descriptive title for your post (Max 200 characters)</p>
         </section>
-        <section id="description">
-            <label for="descripInput">Description:</label>
-            <input type="text" name="descriInput">
-            <p>Please enter additional descrpition and details about your post (Max 500 characters)</p>
+        <section id="description" class="entry">
+            <label for="descripInput">Please enter additional <b>description</b> and details about your post: <i>(Max 500 characters)</i></label>
+            <br>
+            <input type="text" name="descripInput">
         </section>
-        <section id="location">
-            <label for="locationInput">Postcode:</label>
+        <section id="location" class="entry">
+            <label for="locationInput">Please enter the <b>postcode</b> of your post:</label>
+            <br>
             <input type="text" name="locationInput">
-            <p>Please enter the postcode of your post</p>
         </section>
-        <section id="labels">
+        <br>
+        <section>
             <label for="labelInput">Please add some labels:</label>
-                <div id="food-drink">
+            <div id="labels">
+                <div id="food-drink" class="label">
                     <img src="Images/Food-drink.png" alt="">
                     <p>Food and Drink</p>
                 </div>
-                <div id="travel">
+                <div id="travel" class="label">
                     <img src="Images/travel.png" alt="">
                     <p>Travel</p>
                 </div>
-                <div id="nightlife">
+                <div id="nightlife" class="label">
                     <img src="Images/nightlife.png" alt="">
                     <p>Nightlife</p>
                 </div>
-                <div id="saftey">
+                <div id="saftey" class="label">
                     <img src="Images/saftey.png" alt="">
-                    <p>Saftey</p>
+                    <p>Safety</p>
                 </div>
-                <div id="stay">
+                <div id="stay" class="label">
                     <img src="Images/stay.png" alt="">
                     <p>Places to Stay</p>
                 </div>
-                <div id="outdoors">
+                <div id="outdoors" class="label">
                     <img src="Images/outdoors.png" alt="">
                     <p>Outdoors</p>
                 </div>
-                <div id="shopping">
+                <div id="shopping" class="label">
                     <img src="Images/shopping.png" alt="">
                     <p>Shopping</p>
                 </div>
-                <div id="Attractions">
+                <div id="Attractions" class="label">
                     <img src="Images/attractions.png" alt="">
                     <p>Attractions</p>
                 </div>
-                <div id="wellness">
+                <div id="wellness" class="label">
                     <img src="Images/wellness.png" alt="">
-                    <p>Wellness and Relaxation</p>
+                    <p>Wellness</p>
                 </div>
-                <div id="fitness">
+                <div id="fitness" class="label">
                     <img src="Images/fitness.png" alt="">
-                    <p>Health and Fitness</p>
+                    <p>Fitness</p>
                 </div>
-                <div id="">
-                    <img src="" alt="">
-                    <p></p>
+                <div id="Test" class="label">
+                    <img src="Images/travel.png" alt="">
+                    <p>Test</p>
                 </div>
-                <div id="">
-                    <img src="" alt="">
-                    <p></p>
+                <div id="Test" class="label">
+                    <img src="Images/nightlife.png" alt="">
+                    <p>Test</p>
                 </div>
-                <div id="">
-                    <img src="" alt="">
-                    <p></p>
-                </div>
+            </div>
+        <section id="submit">
+            <img src="Images/add.png" alt="">
+            <input type="submit" id="submitBtn">
+        </section>
         </section>
     </form>
-    
+</main>
 </body>
 </html>

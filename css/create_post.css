@@ -1,7 +1,15 @@
+:root {
+    --light: rgb(237, 236, 236);
+    --dark: rgb(71, 76, 85);
+    --primary: rgb(169, 82, 76);
+    --secondary: rgb(149, 155, 167);
+    --tertiary: rgb(71, 128, 157);
+  }
+
 body {
     margin: 0;
     padding: 0;
-    font-family: "Roboto", sans-serif
+    font-family: "Roboto", sans-serif;
 }
 
 header nav img {
@@ -9,6 +17,101 @@ header nav img {
     width: 300px;
 }
 
-#labels img {
+main {
+    display: flex;
+    justify-content: center;
+    margin: 100px;
+    border-radius: 30px;
+    border: solid 40px var(--primary);
+    background-color: var(--primary);
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    padding: 100px;
+    text-align: center;
+    color: var(--dark);
+    border-radius: 40px;
+    background-color: white;
+}
+
+form input {
+    border-radius: 10px;
+    width: 500px;
+}
+
+form #title input {
+    height: 40px;
+}
+
+form #location input {
+    height: 50px;
+}
+
+
+form #description input {
+    height: 100px;
+    width: 500px;
+
+}
+
+form #labels {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
+
+form
+.entry input {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+form .label {
+    background-color: var(--tertiary);
+    border-radius: 5px 20px 5px;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 2px;
     opacity: 70%;
+    height: 40px;
+    width: 150px;
+}
+
+form .label:hover {
+    background-color: rgb(54, 98, 121);
+}
+
+.label p {
+    color: black;
+    margin: 0;
+    margin-top: 10px;
+}
+
+form #labels img {
+    height: 25px;
+    width: 25px;
+    align-self: center;
+    margin-right: 10px;
+}
+
+
+form #submit input {
+    border: none;
+    background-color: white;
+    font-size: 20px;
+}
+
+form #submit {
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    border: 2px dashed var(--dark);
+    padding: 10px;
+    width: 200px;
+    text-align: center;
 }

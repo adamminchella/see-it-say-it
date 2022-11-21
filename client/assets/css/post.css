@@ -51,13 +51,21 @@ body {
 
 .emojis {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   margin-bottom: 20px;
+}
+
+.emojis p {
+  margin-bottom: 0;
 }
 
 .emoji {
   width: 30px;
   height: 30px;
+}
+
+.emoji-container {
+  display: flex;
 }
 
 .background-image {
@@ -75,8 +83,11 @@ body {
 }
 
 .comment-card {
-  border-bottom: 1px solid rgb(162, 162, 162);
   padding: 20px;
+}
+
+.comment-card-border {
+  border-bottom: 1px solid rgb(162, 162, 162);
 }
 
 .comment-card > * {

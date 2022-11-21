@@ -29,6 +29,10 @@ main {
   justify-content: center;
 }
 
+img {
+  width: 200px
+}
+
 h1 {
   font-size: 6rem;
   margin-top: 0;

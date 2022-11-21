@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/styles.css">
+    <script src="https://unpkg.com/feather-icons"></script>
     <title>See It, Say It</title>
 </head>
 <body>
@@ -15,10 +16,8 @@
 
     <main>
         <a id="newPost" href="#">
-                
-            <img class="icon" src="./assets/images/add.png" alt="add">
+            <span class="icon"><i data-feather="plus"></i></span>
             New Post
-        
         </a>
 
         <h2>Recent Posts</h2>
@@ -31,19 +30,19 @@
                     <ul class="emojis">
                         <li>
                             <div class="likes">
-                                <img class="emoji" src="./assets/images/like.png" alt="like">
+                                <span class="icon"><i data-feather="thumbs-up"></i></span>
                                 0
                             </div>
                         </li>
                         <li>
                             <div class="dislikes">
-                                <img class="emoji" src="./assets/images/dislike.png" alt="dislike">
+                                <span class="icon"><i data-feather="thumbs-down"></i></span>
                                 0
                             </div>
                         </li>
                         <li>
                             <div class="Surpised">
-                                <img class="emoji" src="./assets/images/surprise.png" alt="surprised">
+                                <span class="icon">&#xe410;</span>
                                 0
                             </div>
                         </li>
@@ -181,5 +180,8 @@
         @Copyright Duck & Divers 2022
     </footer>
 
+    <script>
+        feather.replace()
+    </script>
 </body>
 </html>

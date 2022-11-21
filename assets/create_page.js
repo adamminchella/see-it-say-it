@@ -1,3 +1,8 @@
-// const myForm = document.querySelector("form");
+const buttons = document.querySelector("button");
 
-// myForm.addEventListener('click')
+myForm.addEventListener('click', select())
+
+ function select(e) {
+    e.preventDeafult()
+    
+ }

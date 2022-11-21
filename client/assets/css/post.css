@@ -17,6 +17,34 @@ body {
   background-color: var(--light);
 }
 
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+header > div:first-child {
+  width: 200px;
+  text-align: center;
+}
+
+header > div:last-child {
+  width: 200px;
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+#logo {
+  height: 150px;
+  width: auto;
+  margin: auto;
+}
+
 .container {
   /* background-color: var(--dark); */
   padding: 20px 30px;

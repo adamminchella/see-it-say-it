@@ -56,6 +56,14 @@ function displayComments(commentData) {
       commentId.classList.add("comment-id");
       commentId.textContent = `#${index + 1}`;
 
+      const commentGif = document.createElement("img");
+      if (comment.gif != "gif url...") {
+        console.log(commentGif);
+        commentGif.src = comment.gif;
+      } else {
+        commentGif.classList.add("hidden");
+      }
+
       const commentText = document.createElement("p");
       commentText.classList.add("comment-text");
       commentText.textContent = comment.text;
@@ -65,6 +73,9 @@ function displayComments(commentData) {
       commentDate.textContent = new Date(comment.date).toString().slice(0, 24);
 
       commentCard.appendChild(commentId);
+
+      commentCard.appendChild(commentGif);
+
       commentCard.appendChild(commentText);
       commentCard.appendChild(commentDate);
 
@@ -76,6 +87,7 @@ function displayComments(commentData) {
 async function displayPostData() {
   const postData = await fetchData("efgh");
   const commentData = postData.comments;
+  console.log(commentData);
   displayTitleData(postData);
   displayComments(commentData);
 }
@@ -153,9 +165,19 @@ document.addEventListener("click", (e) => {
 });
 
 commentInputButton.addEventListener("click", () => {
-  if (commentInputField.value === "") {
+  const selectedGifContainer = document.querySelector(
+    ".selected-gif-container"
+  );
+
+  if (commentInputField.value === "" && !selectedGifContainer.children) {
     return;
   } else {
+    let gifUrl;
+    if (selectedGifContainer.children.length > 0) {
+      gifUrl = selectedGifContainer.firstChild.src;
+    } else {
+      gifUrl = "gif url...";
+    }
     const url = `http://localhost:3000/api/posts/efgh/comments`;
     fetch(url, {
       method: "POST",
@@ -164,14 +186,17 @@ commentInputButton.addEventListener("click", () => {
       },
       body: JSON.stringify({
         text: commentInputField.value,
-        gif: "unknown",
+        gif: gifUrl,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         const gifImg = document.querySelector(".gifImg");
-        gifImg.remove();
+        if (gifImg) {
+          gifImg.remove();
+        }
         const commentData = data.comments;
+        console.log(commentData);
         displayComments(commentData);
       });
   }
@@ -203,7 +228,7 @@ gifSearchButton.addEventListener("click", () => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      gifContainer.replaceChildren();
       data.data.forEach((element) => {
         const src = element.images.fixed_height_small.url;
         const gif = document.createElement("img");

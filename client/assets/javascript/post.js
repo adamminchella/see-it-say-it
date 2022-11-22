@@ -16,6 +16,9 @@ const commentInputButton = document.querySelector(".comment-button");
 const commentInputField = document.querySelector("#comment-input-field");
 const exitButton = document.querySelector(".exit-gif-search");
 
+const postId = window.location.href.split("=")[1];
+console.log(postId);
+
 async function fetchData(postId) {
   const url = `http://localhost:3000/api/posts/${postId}`;
   let postData;
@@ -85,7 +88,7 @@ function displayComments(commentData) {
 }
 
 async function displayPostData() {
-  const postData = await fetchData("efgh");
+  const postData = await fetchData(postId);
   const commentData = postData.comments;
   console.log(commentData);
   displayTitleData(postData);
@@ -95,7 +98,7 @@ async function displayPostData() {
 emojis.forEach((emoji) => {
   emoji.addEventListener("click", () => {
     const emojiType = emoji.children[1].classList.value;
-    const url = `http://localhost:3000/api/posts/efgh/emojis`;
+    const url = `http://localhost:3000/api/posts/${postId}/emojis`;
     if (emojiType == "likes") {
       fetch(url, {
         method: "PUT",
@@ -178,7 +181,7 @@ commentInputButton.addEventListener("click", () => {
     } else {
       gifUrl = "gif url...";
     }
-    const url = `http://localhost:3000/api/posts/efgh/comments`;
+    const url = `http://localhost:3000/api/posts/${postId}/comments`;
     fetch(url, {
       method: "POST",
       headers: {

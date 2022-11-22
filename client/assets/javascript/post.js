@@ -136,7 +136,12 @@ document.addEventListener("click", (e) => {
     !e.target.classList.contains("comment-button") &&
     e.target.id != "comment-input-field" &&
     commentInputField.value == "" &&
-    !e.target.classList.contains("exit-gif-search")
+    !e.target.classList.contains("exit-gif-search") &&
+    !e.target.classList.contains("gif-search-input-field") &&
+    !e.target.classList.contains("gif-search-button") &&
+    !e.target.classList.contains("search-icon") &&
+    !e.target.classList.contains("gifImg") &&
+    !e.target.classList.contains("selected-gif-container")
   ) {
     if (!gifIconContainer.classList.contains("hidden")) {
       gifIconContainer.classList.add("hidden");
@@ -164,7 +169,8 @@ commentInputButton.addEventListener("click", () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        const gifImg = document.querySelector(".gifImg");
+        gifImg.remove();
         const commentData = data.comments;
         displayComments(commentData);
       });
@@ -177,6 +183,13 @@ commentInputButton.addEventListener("click", () => {
 const gifSearchButton = document.querySelector(".gif-search-button");
 
 gifIconContainer.addEventListener("click", () => {
+  const selectedGifContainer = document.querySelector(
+    ".selected-gif-container"
+  );
+  console.log(selectedGifContainer.children);
+  if (selectedGifContainer.children.length > 0) {
+    return;
+  }
   const gifSearchContainer = document.querySelector(".gif-search-container");
   gifSearchContainer.classList.remove("hidden");
 });
@@ -197,6 +210,16 @@ gifSearchButton.addEventListener("click", () => {
         gif.classList.add("gifImg");
         gif.setAttribute("src", src);
         gifContainer.appendChild(gif);
+        gif.addEventListener("click", () => {
+          const gifSearchContainer = document.querySelector(
+            ".gif-search-container"
+          );
+          const selectedGifContainer = document.querySelector(
+            ".selected-gif-container"
+          );
+          selectedGifContainer.appendChild(gif);
+          gifSearchContainer.classList.add("hidden");
+        });
       });
     });
 });
@@ -219,5 +242,7 @@ function OnInput() {
   this.style.height = 0;
   this.style.height = this.scrollHeight + "px";
 }
+
+document.addEventListener("click", (e) => e.target);
 
 window.addEventListener("load", displayPostData);

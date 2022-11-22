@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/styles.css">
+    <script defer src="./assets/javascript/home.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>See It, Say It</title>
 </head>
@@ -22,25 +23,26 @@
 
         <h2>Recent Posts</h2>
 
-        <div class="post">
+        <div id="postTemplate" class="post">
             <img class="postImage" src="http://london.com/wp-content/uploads/2019/03/london_001.jpg" alt="image">
             <div class="postHeader">
                 <h2 class="postTitle">Post Title</h2>
                 <div>
-                    <div class="emojis">
-                            <div class="likes">
-                                <span class="icon"><i class='bx bx-like bx-sm'></i></span>
-                                0
-                            </div>
-                            <div class="dislikes">
-                                <span class="icon"><i class='bx bx-dislike bx-sm'></i></span>
-                                0
-                            </div>
-                            <div class="Surpised">
-                                <span class="icon"><i class='bx bx-shocked bx-sm'></i></span>
-                                0
-                            </div>
-                    </div>
+                    <ul class="emojis">
+                        <li>
+                            <span class="icon"><i class='bx bx-like bx-sm'></i></span>
+                            <span class="like">0</span>
+                        </li>
+                        <li>
+                            <span class="icon"><i class='bx bx-dislike bx-sm'></i></span>
+                            <span class="dislike">0</span>
+                        </li>
+                        <li>
+                            <span class="icon"><i class='bx bx-shocked bx-sm'></i></span>
+                            <span class="surprise">0</span>
+                        </li>
+                    </ul>
+
                 </div>
                
             </div>
@@ -54,108 +56,16 @@
 
             <div>
                 <ul class="labels">
-                    <li>#Label1</li>
-                    <li>#Label2</li>
-                    <li>#Label3</li>
                 </ul>
             </div>
             <h3 class="commentHeader">Comments</h3>
-            <div id="comments">
-                <p class="comment">Comment here</p>
-                <p class="comment">Another comment here</p>
-                <p class="comment">One more comment down here</p>
+            <div class="comments">
+                
             </div>
         </div>
 
-        <div class="post">
-            <img class="postImage" src="http://london.com/wp-content/uploads/2019/03/london_002.jpg" alt="image">
-            <div class="postHeader">
-                <h2 class="postTitle">Post Title</h2>
-                <div>
-                    <div class="emojis">
-                            <div class="likes">
-                                <span class="icon"><i class='bx bx-like bx-sm'></i></span>
-                                0
-                            </div>
-                            <div class="dislikes">
-                                <span class="icon"><i class='bx bx-dislike bx-sm'></i></span>
-                                0
-                            </div>
-                            <div class="Surpised">
-                                <span class="icon"><i class='bx bx-shocked bx-sm'></i></span>
-                                0
-                            </div>
-                    </div>
-                </div>
-               
-            </div>
-            
-            <div class="postInfo">
-                <span class="icon"><i class='bx bx-calendar bx-sm'></i></span>
-                <span class="postDate">Date</span>
-                <span class="icon"><i class='bx bx-map bx-sm'></i></span>
-                <span class="postLocation">Location</span>
-            </div>
+       
 
-            <div>
-                <ul class="labels">
-                    <li>#Label1</li>
-                    <li>#Label2</li>
-                    <li>#Label3</li>
-                </ul>
-            </div>
-            <h3 class="commentHeader">Comments</h3>
-            <div id="comments">
-                <p class="comment">Comment here</p>
-                <p class="comment">Another comment here</p>
-                <p class="comment">One more comment down here</p>
-            </div>
-        </div>
-
-        <div class="post">
-            <img class="postImage" src="http://london.com/wp-content/uploads/2019/03/london_002.jpg" alt="image">
-            <div class="postHeader">
-                <h2 class="postTitle">Post Title</h2>
-                <div>
-                    <div class="emojis">
-                            <div class="likes">
-                                <span class="icon"><i class='bx bx-like bx-sm'></i></span>
-                                0
-                            </div>
-                            <div class="dislikes">
-                                <span class="icon"><i class='bx bx-dislike bx-sm'></i></span>
-                                0
-                            </div>
-                            <div class="Surpised">
-                                <span class="icon"><i class='bx bx-shocked bx-sm'></i></span>
-                                0
-                            </div>
-                    </div>
-                </div>
-               
-            </div>
-            
-            <div class="postInfo">
-                <span class="icon"><i class='bx bx-calendar bx-sm'></i></span>
-                <span class="postDate">Date</span>
-                <span class="icon"><i class='bx bx-map bx-sm'></i></span>
-                <span class="postLocation">Location</span>
-            </div>
-
-            <div>
-                <ul class="labels">
-                    <li>#Label1</li>
-                    <li>#Label2</li>
-                    <li>#Label3</li>
-                </ul>
-            </div>
-            <h3 class="commentHeader">Comments</h3>
-            <div id="comments">
-                <p class="comment">Comment here</p>
-                <p class="comment">Another comment here</p>
-                <p class="comment">One more comment down here</p>
-            </div>
-        </div>
     </main>
 
     <footer>

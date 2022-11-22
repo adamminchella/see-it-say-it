@@ -35,11 +35,15 @@ function writeToCard(cardId, i) {
     }
 
     let numComments = postData.comments.length;
-        let comment = document.createElement('p')
-        comment.className = 'comment';
-        let text = document.createTextNode(postData.comments[numComments-1].text)
-        comment.appendChild(text);
-        post.getElementsByClassName('comments')[0].appendChild(comment);
+    let comment = document.createElement('p')
+    comment.className = 'comment';
+    let text = document.createTextNode(postData.comments[numComments-1].text)
+    comment.appendChild(text);
+    post.getElementsByClassName('comments')[0].appendChild(comment);
+
+    post.addEventListener('click', () => {
+        window.location.href = `./html/post.html?id=${post.id}`;
+    })
     
 })
 }

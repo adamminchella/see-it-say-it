@@ -7,28 +7,27 @@ Array.from(button).forEach(button => {
    button.addEventListener("click", (e) => {
       e.preventDefault()
       const clickedButton = button.value;
-      console.log(labels);
 
-      if (labels.length <= 3) {
-         console.log("test")
-         for (let value of labels) {
-            if (value == clickedButton) {
-               console.log(labels.indexOf(value))
-               labels.splice(labels.indexOf(value), 1)
-               console.log(labels)
-            }
-            else {
+         if (!isButtonClicked(clickedButton)) {
+            if (labels.length < 3) {
                labels.push(clickedButton)
-               console.log(clickedButton)
             }
+         } 
+         else {
+            labels.splice(labels.indexOf(clickedButton), 1)
          }
-      }
-      else {
-         console.log("Please select max 3 labels")
-      }
+         console.log(labels)
    })
 })
 
+function isButtonClicked(clickedButton) {
+   for (let value of labels) {
+      if (value == clickedButton) {
+         return true
+      }
+   }
+   return false
+}
 
 
 form.addEventListener("submit", function(e) {

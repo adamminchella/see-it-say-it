@@ -10,10 +10,6 @@
 font-family: Arial, Helvetica, sans-serif;
 }
 
-:is(a, div):has(span) {
-    vertical-align: middle;
-}
-
 body {
   background-color: var(--light);
   margin: 0;
@@ -76,16 +72,10 @@ main {
     justify-content: space-between;
 }
 
-.icon {
-    height: 18px;
-    width: auto;
-    vertical-align: bottom;
-    color: var(--light)
-}
-
 .postTitle {
     padding-left: 10px;
     display: inline;
+    margin: 20px 0px;
 }
 
 .postInfo {
@@ -94,9 +84,17 @@ main {
 
 
 
-.emojis li {
-    display: inline-block;
-    padding-right: 20px;
+.emojis {
+    display: flex;
+    margin: 20px 20px
+}
+
+.emojis > div {
+    margin: 0px 0.4rem
+}
+
+.icon {
+    vertical-align: middle;
 }
 
 .emoji {

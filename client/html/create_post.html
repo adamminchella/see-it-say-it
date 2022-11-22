@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/create_post.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <script src="../assets/css/create_post.css" defer></script>
+    <script src="../assets/javascript/create_page.js" defer></script>
     <title>Create Post</title>
 </head>
 <body>
@@ -25,71 +25,77 @@
         <section id="titleID" class="entry">
             <label for="title">Please enter a <b>title</b> for your post: <i>(Max 200 characters)</i></label>
             <br>
-            <input type="text" name="title">
+            <input type="text" name="title" id="myTitle">
         </section>
         <section id="descriptionID" class="entry">
             <label for="description">Please enter additional <b>description</b> and details about your post: <i>(Max 500 characters)</i></label>
             <br>
-            <input type="text" name="description">
+            <input type="text" name="description" id="myDescription">
         </section>
         <section id="locationID" class="entry">
             <label for="location">Please enter the <b>postcode</b> of your post:</label>
             <br>
-            <input type="text" name="location">
+            <input type="text" name="location" id="myLocation">
         </section>
         <br>
         <section>
             <label for="labelInput">Please add up to 3 <b>labels:</b></label>
             <div id="labels">
                 <div id="food-drink" class="label">
-                    <button>
+                    <button value="food" class="button">
                         <img src="../assets/images/Images_create_post/Food-drink.png" alt="">
                     Food and Drink</button>
                 </div>
                 <div id="travel" class="label">
-                    <button>
+                    <button value="travel" class="button">
                         <img src="../assets/images/Images_create_post/travel.png" alt="">
                     Travel</button>
                 </div>
                 <div id="nightlife" class="label">
-                    <button>
+                    <button value="night" class="button">
                         <img src="../assets/images/Images_create_post/nightlife.png" alt="">
                     Nightlife</button>
                 </div>
                 <div id="saftey" class="label">
-                    <button><img src="../assets/images/Images_create_post/saftey.png" alt="">
+                    <button value="safety" class="button">
+                        <img src="../assets/images/Images_create_post/saftey.png" alt="">
                     Safety</button>
                 </div>
                 <div id="stay" class="label">
-                    <button><img src="../assets/images/Images_create_post/stay.png" alt="">
+                    <button value="stay" class="button">
+                        <img src="../assets/images/Images_create_post/stay.png" alt="">
                     Places to Stay</button>
                 </div>
                 <div id="outdoors" class="label">
-                    <button><img src="../assets/images/Images_create_post/outdoors.png" alt="">
+                    <button value="outdoors" class="button">
+                        <img src="../assets/images/Images_create_post/outdoors.png" alt="">
                     Outdoors</button>
                 </div>
                 <div id="shopping" class="label">
-                    <button><img src="../assets/images/Images_create_post/shopping.png" alt="">
+                    <button value="shopping" class="button">
+                        <img src="../assets/images/Images_create_post/shopping.png" alt="">
                     Shopping</button>
                 </div>
                 <div id="Attractions" class="label">
-                    <button><img src="../assets/images/Images_create_post/attractions.png" alt="">
+                    <button value="attractions" class="button">
+                        <img src="../assets/images/Images_create_post/attractions.png" alt="">
                     Attractions</button>
                 </div>
                 <div id="wellness" class="label">
-                    <button><img src="../assets/images/Images_create_post/wellness.png" alt="">
+                    <button value="wellness" class="button">
+                        <img src="../assets/images/Images_create_post/wellness.png" alt="">
                     Wellness</button>
                 </div>
                 <div id="fitness" class="label">
-                    <button><img src="../assets/images/Images_create_post/fitness.png" alt="">
+                    <button value="fitness"><img src="../assets/images/Images_create_post/fitness.png" alt="">
                     Fitness</button>
                 </div>
                 <div id="Test" class="label">
-                    <button><img src="../assets/images/Images_create_post/Food-drink.png" alt="">
+                    <button value="test1"><img src="../assets/images/Images_create_post/Food-drink.png" alt="">
                     Test</button>
                 </div>
                 <div id="Test" class="label">
-                    <button><img src="../assets/images/Images_create_post/travel.png" alt="">
+                    <button value="test2"><img src="../assets/images/Images_create_post/travel.png" alt="">
                     Test</button>
                 </div>
             </div>

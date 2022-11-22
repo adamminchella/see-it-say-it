@@ -144,3 +144,9 @@ footer {
     padding: 20px;
     background-color: var(--light);
 }
+
+input .check {
+    width: 50px;
+    border-radius: 50%;
+}
+

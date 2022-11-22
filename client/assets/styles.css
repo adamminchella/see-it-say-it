@@ -59,7 +59,7 @@ main {
     box-shadow: 5px 5px 5px 5px var(--secondary);
 }
 
-.post:hover {
+.postImage:hover {
     cursor: pointer;
 }
 

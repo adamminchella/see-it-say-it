@@ -9,6 +9,12 @@ const commentsContainer = document.querySelector(".comments-container");
 
 const emojis = document.querySelectorAll(".emoji-container");
 
+const commentInput = document.querySelector(".comment-input");
+const commentButtons = document.querySelector(".comment-buttons-container");
+const gifIconContainer = document.querySelector(".gif-icon-container");
+const commentInputButton = document.querySelector(".comment-button");
+const commentInputField = document.querySelector("#comment-input-field");
+
 async function fetchData(postId) {
   const url = `http://localhost:3000/api/posts/${postId}`;
   let postData;
@@ -30,6 +36,10 @@ function displayTitleData(postData) {
 }
 
 function displayComments(commentData) {
+  const allComments = document.querySelectorAll(".comment-card");
+  allComments.forEach((comment) => {
+    comment.remove();
+  });
   if (commentData.length === 0) {
     commentsHeader.textContent = "Be the first to comment!";
   } else {
@@ -43,7 +53,7 @@ function displayComments(commentData) {
 
       const commentId = document.createElement("p");
       commentId.classList.add("comment-id");
-      commentId.textContent = `#${comment.id}`;
+      commentId.textContent = `#${index + 1}`;
 
       const commentText = document.createElement("p");
       commentText.classList.add("comment-text");
@@ -71,9 +81,9 @@ async function displayPostData() {
 
 emojis.forEach((emoji) => {
   emoji.addEventListener("click", () => {
-    const emojiTypeClass = emoji.children[1].classList;
+    const emojiType = emoji.children[1].classList.value;
     const url = `http://localhost:3000/api/posts/efgh/emojis`;
-    if (emojiTypeClass.contains("likes")) {
+    if (emojiType == "likes") {
       fetch(url, {
         method: "PUT",
         headers: {
@@ -85,7 +95,7 @@ emojis.forEach((emoji) => {
         .then((data) => {
           likes.textContent = data.emojis.like;
         });
-    } else if (emojiTypeClass.contains("dislikes")) {
+    } else if (emojiType == "dislikes") {
       fetch(url, {
         method: "PUT",
         headers: {
@@ -97,7 +107,7 @@ emojis.forEach((emoji) => {
         .then((data) => {
           dislikes.textContent = data.emojis.dislike;
         });
-    } else if (emojiTypeClass.contains("surprises")) {
+    } else if (emojiType == "surprises") {
       fetch(url, {
         method: "PUT",
         headers: {
@@ -111,6 +121,50 @@ emojis.forEach((emoji) => {
         });
     }
   });
+});
+
+commentInput.addEventListener("click", () => {
+  gifIconContainer.classList.remove("hidden");
+  commentInputButton.classList.remove("hidden");
+});
+
+document.addEventListener("click", (e) => {
+  if (
+    !e.target.classList.contains("gif-icon") &&
+    !e.target.classList.contains("comment-button") &&
+    e.target.id != "comment-input-field"
+  ) {
+    if (!gifIconContainer.classList.contains("hidden")) {
+      gifIconContainer.classList.add("hidden");
+    }
+    if (!commentInputButton.classList.contains("hidden")) {
+      commentInputButton.classList.add("hidden");
+    }
+  }
+});
+
+commentInputButton.addEventListener("click", () => {
+  if (commentInputField.value === "") {
+    return;
+  } else {
+    const url = `http://localhost:3000/api/posts/efgh/comments`;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text: commentInputField.value,
+        gif: "unknown",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const commentData = data.comments;
+        displayComments(commentData);
+      });
+  }
 });
 
 window.addEventListener("load", displayPostData);

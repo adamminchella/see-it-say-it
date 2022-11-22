@@ -1,8 +1,20 @@
+// Loads all posts
+fetch('http://localhost:3000/api/posts').then(r=> r.json())
+.then(Data => {
+    let numPosts = Data.length;
+    for (let i = 0; i < numPosts; i ++) {
+        createCard(`post${i}`, i);
+        writeToCard(`post${i}`, i);
+    }
+    document.getElementById('postTemplate').style.display = 'none'
+})
 
 
-function writeToCard(cardId) {
-    fetch('http://localhost:3000/api/posts/efgh').then(r => r.json())
-    .then(Data => {let postData = Data
+
+// Adds data to card
+function writeToCard(cardId, i) {
+    fetch('http://localhost:3000/api/posts/').then(r => r.json())
+    .then(Data => {let postData = Data[i]
 
     let post = document.getElementById(cardId);
     post.setAttribute('data-id', postData.postId)
@@ -15,21 +27,22 @@ function writeToCard(cardId) {
     
     let numLabels = postData.labels.length;
     for (let i = 0; i < numLabels; i++) {
-        let label = document.createElement('li')
-        let text = document.createTextNode(postData.labels[i])
+        let label = document.createElement('li');
+        let text = document.createTextNode(postData.labels[i]);
         label.appendChild(text);
         post.getElementsByClassName('labels')[0].appendChild(label);
     }
 
-    for (let i = 0; i < 3; i++) {
+    let numComments = postData.comments.length;
         let comment = document.createElement('p')
         comment.className = 'comment';
-        let text = document.createTextNode(postData.comments[i].text)
+        let text = document.createTextNode(postData.comments[numComments-1].text)
         comment.appendChild(text);
         post.getElementsByClassName('comments')[0].appendChild(comment);
-    }
+    
 })
 }
+
 
 function createCard(id) {
     let post = document.getElementsByClassName('post')[0];
@@ -37,6 +50,3 @@ function createCard(id) {
     newCard.id = id;
     document.getElementsByTagName('main')[0].appendChild(newCard);
 }
-
-createCard("newCard")
-writeToCard("newCard")

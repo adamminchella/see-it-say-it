@@ -48,7 +48,7 @@ function displayComments(commentData) {
       const commentCard = document.createElement("div");
       commentCard.classList.add("comment-card");
 
-      if (commentData.length > 2 && index < commentData.length - 1) {
+      if (commentData.length > 1 && index < commentData.length - 1) {
         commentCard.classList.add("comment-card-border");
       }
 

@@ -62,8 +62,9 @@ function emojiCount(cardId) {
     const dislikes = post.getElementsByClassName('dislike')[0];
     const surprised = post.getElementsByClassName('surprise')[0];
     const url = `http://localhost:3000/api/posts/${post.id}/emojis`;
+    let emojiSelected = false;
     for (const emoji of emojis) {
-        let emojiSelected = false;
+        
         emoji.addEventListener('click', () => {
             if (emoji.classList.contains('liked') && emojiSelected == false) {
                 fetch(url, {

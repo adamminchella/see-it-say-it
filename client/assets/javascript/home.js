@@ -1,15 +1,16 @@
 // Loads all posts
-fetch('http://localhost:3000/api/posts').then(r=> r.json())
-.then(Data => {
-    let numPosts = Data.length;
-    for (let i = 0; i < numPosts; i ++) {
-        createCard(`post${i}`, i);
-        writeToCard(`post${i}`, i);
-    }
-    document.getElementById('postTemplate').style.display = 'none'
-})
-
-
+async function loadData() {
+    await fetch('http://localhost:3000/api/posts').then(r=> r.json())
+    .then(Data => {
+        let numPosts = Data.length;
+        for (let i = 0; i < numPosts; i ++) {
+            createCard(Data[i].postId, i);
+            writeToCard(Data[i].postId, i);
+            emojiCount(Data[i].postId);
+        }
+        document.getElementById('postTemplate').style.display = 'none';
+    })
+}
 
 // Adds data to card
 function writeToCard(cardId, i) {
@@ -17,7 +18,7 @@ function writeToCard(cardId, i) {
     .then(Data => {let postData = Data[i]
 
     let post = document.getElementById(cardId);
-    post.setAttribute('data-id', postData.postId)
+    // post.setAttribute('data-id', postData.postId)
     post.getElementsByClassName('postTitle')[0].textContent = postData.title;
     post.getElementsByClassName('postDate')[0].textContent = postData.date;
     post.getElementsByClassName('postLocation')[0].textContent = postData.location.postcode;
@@ -34,11 +35,15 @@ function writeToCard(cardId, i) {
     }
 
     let numComments = postData.comments.length;
-        let comment = document.createElement('p')
-        comment.className = 'comment';
-        let text = document.createTextNode(postData.comments[numComments-1].text)
-        comment.appendChild(text);
-        post.getElementsByClassName('comments')[0].appendChild(comment);
+    let comment = document.createElement('p')
+    comment.className = 'comment';
+    let text = document.createTextNode(postData.comments[numComments-1].text)
+    comment.appendChild(text);
+    post.getElementsByClassName('comments')[0].appendChild(comment);
+
+    post.addEventListener('click', () => {
+        window.location.href = `./html/post.html?id=${post.id}`;
+    })
     
 })
 }
@@ -50,3 +55,62 @@ function createCard(id) {
     newCard.id = id;
     document.getElementsByTagName('main')[0].appendChild(newCard);
 }
+
+function emojiCount(cardId) {
+    const post = document.getElementById(cardId);
+    const emojis = post.getElementsByClassName('emoji');
+    const likes = post.getElementsByClassName('like')[0];
+    const dislikes = post.getElementsByClassName('dislike')[0];
+    const surprised = post.getElementsByClassName('surprise')[0];
+    const url = `http://localhost:3000/api/posts/${post.id}/emojis`;
+    for (const emoji of emojis) {
+        let emojiSelected = false;
+        emoji.addEventListener('click', () => {
+            if (emoji.classList.contains('liked') && emojiSelected == false) {
+                fetch(url, {
+                    method: "PUT",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ emoji: "like" }),
+                  })
+                    .then((res) => res.json())
+                    .then((data) => {
+                      likes.textContent = data.emojis.like;
+                    });
+                emojiSelected = true;
+            } 
+            else if (emoji.classList.contains('disliked') && emojiSelected == false) {
+                fetch(url, {
+                    method: "PUT",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ emoji: "dislike" }),
+                  })
+                    .then((res) => res.json())
+                    .then((data) => {
+                      dislikes.textContent = data.emojis.dislike;
+                    });
+                emojiSelected = true;
+            } 
+            else if (emoji.classList.contains('surprised') && emojiSelected == false){
+                fetch(url, {
+                    method: "PUT",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ emoji: "surprise" }),
+                  })
+                    .then((res) => res.json())
+                    .then((data) => {
+                      surprised.textContent = data.emojis.surprise;
+                    });
+                emojiSelected = true;
+            }
+        })
+    }
+}
+
+window.addEventListener('load', loadData);
+

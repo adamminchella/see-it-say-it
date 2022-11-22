@@ -30,7 +30,6 @@ function writeToCard(cardId, i) {
     })
     .then(Data => {
         let postData = Data[i]
-
         let post = document.getElementById(cardId);
         post.getElementsByClassName('postTitle')[0].textContent = postData.title;
         post.getElementsByClassName('postDate')[0].textContent = postData.date;
@@ -73,6 +72,7 @@ function createCard(id) {
 }
 
 function emojiCount(cardId) {
+    
     const post = document.getElementById(cardId);
     const emojis = post.getElementsByClassName('emoji');
     const likes = post.getElementsByClassName('like')[0];
@@ -80,8 +80,22 @@ function emojiCount(cardId) {
     const surprised = post.getElementsByClassName('surprise')[0];
     const url = `http://localhost:3000/api/posts/${post.id}/emojis`;
     let emojiSelected = false;
+    let emojiParam = localStorage.getItem(cardId);
+    console.log(emojiParam)
+    if (emojiParam) {
+            emojiSelected = true;
+        } 
     for (const emoji of emojis) {
+        if (emoji.classList.contains(`${emojiParam}d`)) {
+            emoji.childNodes[0].className = `bx bxs-${emojiParam} bx-sm`;
+        } 
+        else if (emoji.classList.contains('surprised') && emojiParam == 'shocked') {
+            emoji.childNodes[0].className = `bx bxs-shocked bx-sm`;
+        }
+            
         
+        
+
         emoji.addEventListener('click', () => {
             if (emoji.classList.contains('liked') && emojiSelected == false) {
                 fetch(url, {
@@ -95,6 +109,7 @@ function emojiCount(cardId) {
                     .then((data) => {
                       likes.textContent = data.emojis.like;
                       emoji.childNodes[0].className = 'bx bxs-like bx-sm';
+                      localStorage.setItem(cardId, 'like');
                     });
                 emojiSelected = true;
             } 
@@ -110,6 +125,7 @@ function emojiCount(cardId) {
                     .then((data) => {
                       dislikes.textContent = data.emojis.dislike;
                       emoji.childNodes[0].className = 'bx bxs-dislike bx-sm';
+                      localStorage.setItem(cardId, 'dislike');
                     });
                 emojiSelected = true;
             } 
@@ -125,6 +141,7 @@ function emojiCount(cardId) {
                     .then((data) => {
                       surprised.textContent = data.emojis.surprise;
                       emoji.childNodes[0].className = 'bx bxs-shocked bx-sm';
+                      localStorage.setItem(cardId, 'shocked');
                     });
                 emojiSelected = true;
             }

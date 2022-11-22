@@ -12,15 +12,67 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
+#logo {
+    height: 100px;
+    width: auto;
+    margin: auto;
+}
+  
 header {
-    background-color: var(--light);
+    position: relative;
+    background: bisque;
+}
+  
+header > div:last-child {
+    position: absolute;
+    left: 0px;
+    bottom: 80px;
+    width: 100%
 }
 
-header nav img {
-    height: 100px;
-    width: 125px;
-    padding: 5px;
+.logo-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0px 120px 0px;
+  }
+
+nav {
+    height: 120px;
+    background-color: var(--light);
 }
+  
+nav > div:first-child {
+    height: 80px;
+}
+  
+nav > div:last-child {
+    width: fit-content;
+    margin: 0px 50px;
+}
+  
+nav a {
+    text-decoration: none;
+}
+  
+nav a:visited {
+    color: inherit;
+}
+
+.all-posts-nav {
+    width: fit-content;
+ }
+
+
+.icon {
+    vertical-align: middle;
+  }
+ 
+ footer {
+   margin-top: 3rem;
+   text-align: center;
+ }
 
 main {
     display: flex;
@@ -143,10 +195,5 @@ footer {
     text-align: center;
     padding: 20px;
     background-color: var(--light);
-}
-
-input .check {
-    width: 50px;
-    border-radius: 50%;
 }
 

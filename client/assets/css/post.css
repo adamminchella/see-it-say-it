@@ -48,12 +48,25 @@ nav {
   background-color: var(--light);
 }
 
-nav > div {
-  padding: 80px 0px 0px 50px;
+nav > div:first-child {
+  height: 80px;
+}
+
+nav > div:last-child {
+  width: fit-content;
+  margin: 0px 50px;
 }
 
 nav a {
   text-decoration: none;
+}
+
+nav a:visited {
+  color: inherit;
+}
+
+.all-posts-nav {
+   width: fit-content;
 }
 
 footer {

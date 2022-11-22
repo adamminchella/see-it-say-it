@@ -107,11 +107,49 @@
             <p class="comment-date">2022-10-05T14:48:00.000Z</p>
           </div> -->
         </div>
+        <div class="new-comment">
+          <div class="comment-input">
+            <textarea
+              name="comment"
+              id="comment-input-field"
+              cols="50"
+              rows="1"
+              placeholder="Add a comment..."
+            ></textarea>
+          </div>
+          <div class="selected-gif-container"></div>
+          <div class="comment-buttons-container">
+            <div class="gif-icon-container hidden">
+              <img
+                class="gif-icon"
+                src="../assets/images/gif-icon.png"
+                alt=""
+              />
+            </div>
+            <button class="comment-button hidden" type="button">Comment</button>
+          </div>
+        </div>
+        <div class="gif-search-container hidden">
+          <div class="gif-input-container">
+            <input
+              class="gif-search-input-field"
+              type="text"
+              placeholder="Search for a gif..."
+            />
+            <button class="gif-search-button" type="button">
+              <img
+                class="search-icon"
+                src="../assets/images/search-icon.png"
+                alt=""
+              />
+            </button>
+          </div>
+          <div class="gif-container"></div>
+          <div class="exit-gif-search">X</div>
+        </div>
       </div>
     </main>
 
-    <footer>
-      @Copyright Duck & Divers 2022
-  </footer>
+    <footer>@Copyright Duck & Divers 2022</footer>
   </body>
 </html>

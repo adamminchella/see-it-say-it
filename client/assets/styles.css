@@ -43,7 +43,6 @@ footer {
     color: var(--light)
 }
 
-
 main {
     display: flex;
     flex-direction: column;
@@ -73,16 +72,10 @@ main {
     justify-content: space-between;
 }
 
-.icon {
-    height: 18px;
-    width: auto;
-    vertical-align: bottom;
-    color: var(--light)
-}
-
 .postTitle {
     padding-left: 10px;
     display: inline;
+    margin: 20px 0px;
 }
 
 .postInfo {
@@ -91,9 +84,17 @@ main {
 
 
 
-.emojis li {
-    display: inline-block;
-    padding-right: 20px;
+.emojis {
+    display: flex;
+    margin: 20px 20px
+}
+
+.emojis > div {
+    margin: 0px 0.4rem
+}
+
+.icon {
+    vertical-align: middle;
 }
 
 .emoji {

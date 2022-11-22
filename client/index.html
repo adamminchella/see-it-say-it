@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/styles.css">
     <script defer src="./assets/javascript/home.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>See It, Say It</title>
 </head>
 <body>
@@ -16,10 +17,8 @@
 
     <main>
         <a id="newPost" href="#">
-                
-            <img class="icon" src="./assets/images/add.png" alt="add">
+            <span class="icon"><i class='bx bx-plus bx-md'></i></span>
             New Post
-        
         </a>
 
         <h2>Recent Posts</h2>
@@ -31,26 +30,27 @@
                 <div>
                     <ul class="emojis">
                         <li>
-                            <img class="emoji" src="./assets/images/like.png" alt="like">
+                            <span class="icon"><i class='bx bx-like bx-sm'></i></span>
                             <span class="like">0</span>
                         </li>
                         <li>
-                            <img class="emoji" src="./assets/images/dislike.png" alt="dislike">
+                            <span class="icon"><i class='bx bx-dislike bx-sm'></i></span>
                             <span class="dislike">0</span>
                         </li>
                         <li>
-                            <img class="emoji" src="./assets/images/surprise.png" alt="surprised">
+                            <span class="icon"><i class='bx bx-shocked bx-sm'></i></span>
                             <span class="surprise">0</span>
                         </li>
                     </ul>
+
                 </div>
                
             </div>
             
             <div class="postInfo">
-                <img class="icon" src="./assets/images/time.png" alt="time">
+                <span class="icon"><i class='bx bx-calendar bx-sm'></i></span>
                 <span class="postDate">Date</span>
-                <img class="icon" src="./assets/images/location.png" alt="pin">
+                <span class="icon"><i class='bx bx-map bx-sm'></i></span>
                 <span class="postLocation">Location</span>
             </div>
 
@@ -65,11 +65,11 @@
         </div>
 
        
+
     </main>
 
     <footer>
         @Copyright Duck & Divers 2022
     </footer>
-
 </body>
 </html>

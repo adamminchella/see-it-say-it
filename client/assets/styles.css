@@ -83,25 +83,21 @@ main {
 }
 
 
-
 .emojis {
-    display: flex;
-    margin: 20px 20px
+    padding-right: 20px;
 }
 
-.emojis > div {
-    margin: 0px 0.4rem
+
+.emojis li {
+   display: inline-block;
+   padding-left: 3px;
 }
 
 .icon {
     vertical-align: middle;
 }
 
-.emoji {
-    width: 24px;
-    height: auto;
-    
-}
+
 
 .labels {
     padding-left: 10px;

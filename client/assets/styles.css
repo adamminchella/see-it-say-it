@@ -97,7 +97,9 @@ main {
     vertical-align: middle;
 }
 
-
+.icon:hover {
+    cursor: pointer; 
+}
 
 .labels {
     padding-left: 10px;

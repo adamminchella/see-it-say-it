@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/create_post.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="../assets/css/create_post.css" defer></script>
+    <title>Create Post</title>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img id="logo" src="../assets/images/logo.png" alt="logo">
+        </div>
+        <nav>
+          <div></div>
+          <div>
+            <a href="../index.html">
+              <div class="all-posts-nav">
+                <span class="icon"><i class='bx bx-left-arrow-alt bx-md'></i></span>
+                All posts
+              </div>
+            </a>
+          </div>
+        </nav>
+        <div>
+            <img id="skyline" src="../assets/images/skyline-edit.svg" alt="skyline of london">
+        </div>
+      </header>
+      
+<main>
+    <form>
+        <h2>Please fill in the form below to create a new blog post:</h2>
+        <section id="titleID" class="entry">
+            <label for="title">Please enter a <b>title</b> for your post: <i>(Max 200 characters)</i></label>
+            <br>
+            <input type="text" name="title">
+        </section>
+        <section id="descriptionID" class="entry">
+            <label for="description">Please enter additional <b>description</b> and details about your post: <i>(Max 500 characters)</i></label>
+            <br>
+            <input type="text" name="description">
+        </section>
+        <section id="locationID" class="entry">
+            <label for="location">Please enter the <b>postcode</b> of your post:</label>
+            <br>
+            <input type="text" name="location">
+        </section>
+        <br>
+        <section>
+            <label for="labelInput">Please add up to 3 <b>labels:</b></label>
+            <div id="labels">
+                <div id="food-drink" class="label">
+                    <button>
+                        <img src="../assets/images/Images_create_post/Food-drink.png" alt="">
+                    Food and Drink</button>
+                </div>
+                <div id="travel" class="label">
+                    <button>
+                        <img src="../assets/images/Images_create_post/travel.png" alt="">
+                    Travel</button>
+                </div>
+                <div id="nightlife" class="label">
+                    <button>
+                        <img src="../assets/images/Images_create_post/nightlife.png" alt="">
+                    Nightlife</button>
+                </div>
+                <div id="saftey" class="label">
+                    <button><img src="../assets/images/Images_create_post/saftey.png" alt="">
+                    Safety</button>
+                </div>
+                <div id="stay" class="label">
+                    <button><img src="../assets/images/Images_create_post/stay.png" alt="">
+                    Places to Stay</button>
+                </div>
+                <div id="outdoors" class="label">
+                    <button><img src="../assets/images/Images_create_post/outdoors.png" alt="">
+                    Outdoors</button>
+                </div>
+                <div id="shopping" class="label">
+                    <button><img src="../assets/images/Images_create_post/shopping.png" alt="">
+                    Shopping</button>
+                </div>
+                <div id="Attractions" class="label">
+                    <button><img src="../assets/images/Images_create_post/attractions.png" alt="">
+                    Attractions</button>
+                </div>
+                <div id="wellness" class="label">
+                    <button><img src="../assets/images/Images_create_post/wellness.png" alt="">
+                    Wellness</button>
+                </div>
+                <div id="fitness" class="label">
+                    <button><img src="../assets/images/Images_create_post/fitness.png" alt="">
+                    Fitness</button>
+                </div>
+                <div id="Test" class="label">
+                    <button><img src="../assets/images/Images_create_post/Food-drink.png" alt="">
+                    Test</button>
+                </div>
+                <div id="Test" class="label">
+                    <button><img src="../assets/images/Images_create_post/travel.png" alt="">
+                    Test</button>
+                </div>
+            </div>
+        <section id="submit">
+            <img src="../assets/images/Images_create_post/add.png" alt="">
+            <input type="submit" id="submitBtn">
+        </section>
+        </section>
+    </form>
+</main>
+<footer>
+    @Copyright Duck & Divers 2022
+</footer>
+
+</body>
+</html>

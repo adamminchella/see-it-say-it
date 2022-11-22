@@ -182,8 +182,8 @@ commentInputButton.addEventListener("click", () => {
     ".selected-gif-container"
   );
   if (
-    commentInputField.value === "" &&
-    selectedGifContainer.children.length == 0
+    commentInputField.value === ""
+    // selectedGifContainer.children.length == 0
   ) {
     return;
   } else {

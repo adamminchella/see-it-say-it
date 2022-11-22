@@ -68,14 +68,37 @@ footer {
 }
 
 .content {
+  display: flex;
+  align-items: flex-end;
+  gap: 75px;
   text-shadow: 1px 1px 3px black;
   position: absolute;
   bottom: 0;
-
   padding: 10px 50px;
 }
 
-img {
+.emojis {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  min-width: 165px;
+}
+
+.emojis p {
+  margin-bottom: 0;
+}
+
+.emoji {
+  width: 30px;
+  height: 30px;
+}
+
+.emoji-container {
+  cursor: pointer;
+  display: flex;
+}
+
+.background-image {
   z-index: -1;
   width: 100%;
   height: 70vh;
@@ -83,15 +106,18 @@ img {
 }
 
 .comments-container {
-  margin-top: 30px;
+  margin-top: 20px;
   border: 1px solid transparent;
   border-radius: 10px;
   box-shadow: 0 0 5px rgb(119, 119, 119);
 }
 
 .comment-card {
-  border-bottom: 1px solid rgb(162, 162, 162);
   padding: 20px;
+}
+
+.comment-card-border {
+  border-bottom: 1px solid rgb(162, 162, 162);
 }
 
 .comment-card > * {

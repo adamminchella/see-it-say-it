@@ -49,6 +49,7 @@ footer {
   /* background-color: var(--dark); */
   padding: 20px 30px;
   margin: 0px auto;
+  position: relative;
 }
 
 .title-card {
@@ -159,13 +160,15 @@ footer {
 
 .comment-buttons-container {
   height: 50px;
-  margin-top: 10px;
+  margin-top: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .gif-icon-container {
+  width: 47px;
+  height: 47px;
   border-radius: 25px;
   padding: 3px;
 }
@@ -196,4 +199,84 @@ footer {
 
 .hidden {
   display: none;
+}
+
+.gif-search-container {
+  border-radius: 10px;
+  background-color: var(--light);
+  box-shadow: 0 0 15px black;
+  position: absolute;
+  width: 700px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 200px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.gif-input-container {
+  width: 60%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  background-color: white;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 0 2px var(--dark);
+}
+
+.gif-search-input-field {
+  flex-grow: 1;
+  height: 100%;
+  padding-left: 20px;
+  border: none;
+}
+
+.gif-search-input-field:focus {
+  outline: none;
+}
+
+.gif-search-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary);
+  border-radius: 20px;
+  border: none;
+  width: 40px;
+  height: 90%;
+  margin-right: 2px;
+  cursor: pointer;
+  transition: width 0.2s;
+}
+
+.gif-search-button:hover {
+  width: 70px;
+  transition: width 0.2s;
+}
+
+.search-icon {
+  width: 20px;
+}
+
+.gif-container {
+  margin: 10px;
+  height: 85%;
+  overflow: scroll;
+}
+
+.gifImg {
+  margin: 0 2px;
+  cursor: pointer;
+}
+
+.exit-gif-search {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
 }

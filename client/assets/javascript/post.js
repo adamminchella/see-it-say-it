@@ -14,6 +14,7 @@ const commentButtons = document.querySelector(".comment-buttons-container");
 const gifIconContainer = document.querySelector(".gif-icon-container");
 const commentInputButton = document.querySelector(".comment-button");
 const commentInputField = document.querySelector("#comment-input-field");
+const exitButton = document.querySelector(".exit-gif-search");
 
 async function fetchData(postId) {
   const url = `http://localhost:3000/api/posts/${postId}`;
@@ -61,7 +62,7 @@ function displayComments(commentData) {
 
       const commentDate = document.createElement("p");
       commentDate.classList.add("comment-date");
-      commentDate.textContent = comment.date;
+      commentDate.textContent = new Date(comment.date).toString().slice(0, 24);
 
       commentCard.appendChild(commentId);
       commentCard.appendChild(commentText);
@@ -129,10 +130,13 @@ commentInput.addEventListener("click", () => {
 });
 
 document.addEventListener("click", (e) => {
+  console.log(e.target);
   if (
     !e.target.classList.contains("gif-icon") &&
     !e.target.classList.contains("comment-button") &&
-    e.target.id != "comment-input-field"
+    e.target.id != "comment-input-field" &&
+    commentInputField.value == "" &&
+    !e.target.classList.contains("exit-gif-search")
   ) {
     if (!gifIconContainer.classList.contains("hidden")) {
       gifIconContainer.classList.add("hidden");
@@ -165,6 +169,55 @@ commentInputButton.addEventListener("click", () => {
         displayComments(commentData);
       });
   }
+  commentInputField.value = "";
+  commentInputButton.classList.add("hidden");
+  gifIconContainer.classList.add("hidden");
 });
+
+const gifSearchButton = document.querySelector(".gif-search-button");
+
+gifIconContainer.addEventListener("click", () => {
+  const gifSearchContainer = document.querySelector(".gif-search-container");
+  gifSearchContainer.classList.remove("hidden");
+});
+
+gifSearchButton.addEventListener("click", () => {
+  const gifContainer = document.querySelector(".gif-container");
+  const gifSearchInput = document.querySelector(
+    ".gif-search-input-field"
+  ).value;
+  const url = `http://api.giphy.com/v1/gifs/search?q=${gifSearchInput}&api_key=LdS1Lnx8uwLjE30dp797RTX5JA9L7YxD`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      data.data.forEach((element) => {
+        const src = element.images.fixed_height_small.url;
+        const gif = document.createElement("img");
+        gif.classList.add("gifImg");
+        gif.setAttribute("src", src);
+        gifContainer.appendChild(gif);
+      });
+    });
+});
+
+exitButton.addEventListener("click", () => {
+  const gifSearchContainer = document.querySelector(".gif-search-container");
+  gifSearchContainer.classList.add("hidden");
+});
+
+const tx = document.getElementsByTagName("textarea");
+for (let i = 0; i < tx.length; i++) {
+  tx[i].setAttribute(
+    "style",
+    "height:" + tx[i].scrollHeight + "px;overflow-y:hidden;"
+  );
+  tx[i].addEventListener("input", OnInput, false);
+}
+
+function OnInput() {
+  this.style.height = 0;
+  this.style.height = this.scrollHeight + "px";
+}
 
 window.addEventListener("load", displayPostData);

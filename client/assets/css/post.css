@@ -17,21 +17,43 @@ body {
   background-color: var(--light);
 }
 
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 3rem;
+#logo {
+  height: 150px;
+  width: auto;
+  margin: auto;
 }
 
-header > div:first-child {
-  width: 200px;
-  text-align: center;
+header {
+  position: relative;
+  background: bisque;
 }
 
 header > div:last-child {
-  width: 200px;
+  position: absolute;
+  left: 0px;
+  bottom: 80px;
+  width: 100%
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0px 120px 0px;
+}
+
+nav {
+  height: 120px;
+  background-color: var(--light);
+}
+
+nav > div {
+  padding: 80px 0px 0px 50px;
+}
+
+nav a {
+  text-decoration: none;
 }
 
 footer {
@@ -39,16 +61,18 @@ footer {
   text-align: center;
 }
 
-#logo {
-  height: 150px;
-  width: auto;
-  margin: auto;
+main {
+  padding: 1rem 0px;
 }
 
 .container {
   /* background-color: var(--dark); */
   padding: 20px 30px;
   margin: 0px auto;
+}
+
+.icon {
+  vertical-align: middle;
 }
 
 .title-card {

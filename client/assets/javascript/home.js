@@ -18,7 +18,6 @@ function writeToCard(cardId, i) {
     .then(Data => {let postData = Data[i]
 
     let post = document.getElementById(cardId);
-    // post.setAttribute('data-id', postData.postId)
     post.getElementsByClassName('postTitle')[0].textContent = postData.title;
     post.getElementsByClassName('postDate')[0].textContent = postData.date;
     post.getElementsByClassName('postLocation')[0].textContent = postData.location.postcode;
@@ -41,7 +40,7 @@ function writeToCard(cardId, i) {
     comment.appendChild(text);
     post.getElementsByClassName('comments')[0].appendChild(comment);
 
-    post.addEventListener('click', () => {
+    post.getElementsByClassName('postImage')[0].addEventListener('click', () => {
         window.location.href = `./html/post.html?id=${post.id}`;
     })
     

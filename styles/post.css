@@ -119,6 +119,7 @@ main {
 
 .emojis {
   display: flex;
+  justify-content: flex-end;
   gap: 15px;
   margin-bottom: 20px;
   min-width: 165px;

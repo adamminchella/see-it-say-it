@@ -95,52 +95,78 @@ async function displayPostData() {
   const commentData = postData.comments;
   console.log(commentData);
   displayTitleData(postData);
+  displayEmojis();
   displayComments(commentData);
 }
 
-emojis.forEach((emoji) => {
-  emoji.addEventListener("click", () => {
-    const emojiType = emoji.children[1].classList.value;
-    const url = `http://localhost:3000/api/posts/${postId}/emojis`;
-    if (emojiType == "likes") {
-      fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ emoji: "like" }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          likes.textContent = data.emojis.like;
-        });
-    } else if (emojiType == "dislikes") {
-      fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ emoji: "dislike" }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          dislikes.textContent = data.emojis.dislike;
-        });
-    } else if (emojiType == "surprises") {
-      fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ emoji: "surprise" }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          surprises.textContent = data.emojis.surprise;
-        });
+function displayEmojis() {
+  let isEmojiSelected = false;
+  emojis.forEach((emoji) => {
+    let selectedEmoji = localStorage.getItem(postId);
+    if (selectedEmoji) {
+      isEmojiSelected = true;
     }
+    let classChange = emoji.children[0].className.replace("x bx-", "x bxs-");
+    if (emoji.classList.contains(`${selectedEmoji}`)) {
+      emoji.children[0].className = classChange;
+    } else if (
+      emoji.classList.contains("surprise") &&
+      selectedEmoji == "shocked"
+    ) {
+      emoji.childNodes[0].className = classChange;
+    }
+    emoji.addEventListener("click", (isEmojiSelected) => {
+      // const emojiType = emoji.children[1].classList.value;
+      const url = `http://localhost:3000/api/posts/${postId}/emojis`;
+      if (emoji.classList.contains("like") && !isEmojiSelected) {
+        fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ emoji: "like" }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            likes.textContent = data.emojis.like;
+            emoji.children[0].className = classChange;
+            localStorage.setItem(postId, "like");
+          });
+        isEmojiSelected = true;
+      } else if (emoji.classList.contains("dislike") && !isEmojiSelected) {
+        fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ emoji: "dislike" }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            dislikes.textContent = data.emojis.dislike;
+            emoji.children[0].className = classChange;
+            localStorage.setItem(postId, "dislike");
+          });
+        isEmojiSelected = true;
+      } else if (emoji.classList.contains("surprise") && !isEmojiSelected) {
+        fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ emoji: "surprise" }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            surprises.textContent = data.emojis.surprise;
+            emoji.children[0].className = classChange;
+            localStorage.setItem(postId, "surprise");
+          });
+        isEmojiSelected = true;
+      }
+    });
   });
-});
+}
 
 commentInputField.addEventListener("click", () => {
   gifIconContainer.classList.remove("hidden");
@@ -284,7 +310,6 @@ gifSearchButton.addEventListener("click", () => {
 exitButton.addEventListener("click", () => {
   const gifSearchContainer = document.querySelector(".gif-search-container");
   gifSearchContainer.classList.add("hidden");
-
   blurBackground.classList.add("hidden");
 });
 

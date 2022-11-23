@@ -35,6 +35,8 @@ function writeToCard(cardId, i) {
         post.getElementsByClassName('postDate')[0].textContent = postData.date;
         post.getElementsByClassName('postLocation')[0].textContent = postData.location.postcode;
 
+        let random = Math.floor(Math.random() * 5);
+        post.getElementsByClassName('postImage')[0].setAttribute('src', `../assets/images/stock${random}.jpg`)
 
         post.getElementsByClassName('likeCount')[0].textContent = postData.emojis.like;
         post.getElementsByClassName('dislikeCount')[0].textContent = postData.emojis.dislike;
@@ -91,12 +93,6 @@ function emojiCount(cardId) {
     
     const post = document.getElementById(cardId);
     const emojis = post.getElementsByClassName('emoji');
-
-
-
-    const likes = post.getElementsByClassName('likeCount')[0];
-    const dislikes = post.getElementsByClassName('dislikeCount')[0];
-    const surprised = post.getElementsByClassName('surpriseCount')[0];
     const url = `http://localhost:3000/api/posts/${post.id}/emojis`;
     
     let emojiSelected = false;
@@ -104,95 +100,64 @@ function emojiCount(cardId) {
 
 
     if (emojiParam) {
-            emojiSelected = true;
-        } 
+        emojiSelected = true;
+    } 
+    
     for (const emoji of emojis) {
 
-
-        
         let classChange = emoji.childNodes[0].className.replace('x bx-', 'x bxs-');
-
         if (emoji.classList.contains(`${emojiParam}`)) {
             emoji.childNodes[0].className = classChange;
         } 
         else if (emoji.classList.contains('surprise') && emojiParam == 'shocked') {
             emoji.childNodes[0].className = classChange;
         }
-             
+
 
         emoji.addEventListener('click', () => {
             if (emoji.classList.contains('like') && emojiSelected == false) {
-
-                fetch(url, {
-                    method: "PUT",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ emoji: "like" }),
-                  })
-                    .then((res) => res.json())
-                    .then((data) => {
-                      likes.textContent = data.emojis.like;
-
-
-                      emoji.childNodes[0].className = classChange;
-
-
-                      localStorage.setItem(cardId, 'like');
-                    });
+                emojiUpdate(cardId, 'like')
+                emoji.childNodes[0].className = classChange;
                 emojiSelected = true;
             } 
-
-
             else if (emoji.classList.contains('dislike') && emojiSelected == false) {
-
-
-                fetch(url, {
-                    method: "PUT",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ emoji: "dislike" }),
-                  })
-                    .then((res) => res.json())
-                    .then((data) => {
-                      dislikes.textContent = data.emojis.dislike;
-
-
-                      emoji.childNodes[0].className = classChange;
-
-
-                      localStorage.setItem(cardId, 'dislike');
-                    });
+                emojiUpdate(cardId, 'dislike')
+                emoji.childNodes[0].className = classChange;
                 emojiSelected = true;
             } 
-
-
             else if (emoji.classList.contains('surprise') && emojiSelected == false) {
-
-
-                fetch(url, {
-                    method: "PUT",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ emoji: "surprise" }),
-                  })
-                    .then((res) => res.json())
-                    .then((data) => {
-                      surprised.textContent = data.emojis.surprise;
-
-
-                      emoji.childNodes[0].className = classChange;
-                      localStorage.setItem(cardId, 'surprise');
-
-
-                    });
+                emojiUpdate(cardId, 'surprise')
+                emoji.childNodes[0].className = classChange;
                 emojiSelected = true;
             }
         })
     }
 }
+
+function emojiUpdate(cardId, emoji) {
+    const post = document.getElementById(cardId);
+    const icon = post.getElementsByClassName(emoji)[0];
+    const count = post.getElementsByClassName(`${emoji}Count`)[0];
+
+    // const classChange = icon.childNodes[0].className.replace('x bx-', 'x bxs-');
+
+    fetch(`http://localhost:3000/api/posts/${post.id}/emojis`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ emoji: emoji }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          count.textContent = data.emojis[emoji];
+        //   icon.className = classChange;
+          localStorage.setItem(cardId, emoji);
+        });
+}
+
+
+
 
 window.addEventListener('load', loadData);
 

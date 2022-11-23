@@ -233,12 +233,10 @@ main {
   cursor: pointer;
 }
 
-
 /* .comment-button-inactive {
   filter: opacity(0.5);
   cursor: default;
 } */
-
 
 .comment-button:hover {
   background-color: rgb(195, 97, 89);
@@ -253,11 +251,11 @@ main {
   background-color: var(--light);
   box-shadow: 0 0 15px black;
   position: absolute;
-  width: 700px;
+  width: 65%;
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  bottom: 200px;
+  bottom: 147px;
   left: 0;
   right: 0;
   text-align: center;
@@ -317,10 +315,28 @@ main {
   overflow: scroll;
 }
 
+.selected-gif-container {
+  position: relative;
+  width: fit-content;
+}
+
 .gifImg {
   margin: 0 2px;
   cursor: pointer;
   border-radius: 2px;
+  /* position: relative; */
+}
+
+.gif-img-delete-button {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 22px;
+  background-color: aliceblue;
+  padding: 3px;
+  border: 1px solid var(--dark);
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 .exit-gif-search {

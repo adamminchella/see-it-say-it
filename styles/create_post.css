@@ -162,10 +162,12 @@ form #submit {
 
 form #submit input {
     font-size: 20px;
+    font-weight: bold;
     color: var(--primary);
     justify-content: center;
     border: none;
     background-color: white;
+    margin: 10px;
 }
 
 footer {
@@ -174,3 +176,492 @@ footer {
     background-color: var(--light);
 }
 
+section {
+    display: block;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 1000px) {
+    form {
+        padding: 50px;
+    }
+    form #formText { 
+        margin-top: 25px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    form {
+        padding: 30px;
+        height: 800px;
+        font-size: 0.8em;
+    }
+    form #formText { 
+        margin-top: 25px;
+    }
+    form #submit {
+        width: 300px;
+        margin-left: 100px;
+    }
+    form #submit input {
+        font-size: 15px;
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    form {
+        padding: 10px;
+        height: 780px;
+    }
+    form #formText {
+        margin-top: 50px;
+    }
+    form #titleID input {
+        height: 30px;
+    }
+    
+    form #locationID input {
+        height: 40px;
+    }
+    
+    form #descriptionID input {
+        height: 80px;
+        width: 500px;
+    }
+}
+
+
+/* Here we need to star reducing the labels */
+@media screen and (max-width: 750px) {
+    #homeArrow{
+        font-size: 15px;
+        margin-top: -25px;
+    }
+    form {
+        padding: 10px;
+        height: 800px;
+        width: 480px;
+    }
+    form #formText {
+        margin-top: 50px;
+    }
+    h2 {
+        font-size: 17px;
+    }
+    form #titleID input {
+        height: 30px;
+        width: 400px;
+    }
+    
+    form #locationID input {
+        height: 40px;
+        width: 400px;
+    }
+    
+    form #descriptionID input {
+        height: 80px;
+        width: 400px;
+    }
+    span {
+        display: block;
+    }
+    form button {
+        height: 30px;
+        width: 130px;
+        font-size: 10px;
+        margin-left: 10px;
+    }
+    form button img {
+        height: 20px;
+        width: 20px;
+        margin-top: -7px;
+        text-align: center;
+    }
+    form #submit {
+        width: 300px;
+        margin-left: 70px;
+    }
+    form #submit input {
+        font-size: 15px;
+    }
+    footer {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    main {
+        margin: 10px;
+    }
+    form {
+        padding: 10px;
+        height: 800px;
+        width: 450px;
+    }
+    form #formText {
+        margin-top: 50px;
+    }
+    form #submit {
+        width: 300px;
+        margin-left: 80px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    main {
+        margin: 10px;
+    }
+    form {
+        padding: 10px;
+        height: 800px;
+        width: 400px;
+        font-size: 0.7em;
+    }
+    form #formText {
+        margin-top: 50px;
+    }
+    h2 {
+        font-size: 15px;
+    }
+    form #titleID input {
+        height: 30px;
+        width: 350px;
+    }
+    
+    form #locationID input {
+        height: 40px;
+        width: 350px;
+    }
+    
+    form #descriptionID input {
+        height: 80px;
+        width: 350px;
+    }
+    form button {
+        height: 30px;
+        width: 100px;
+        font-size: 8.5px;
+        padding: 7px;
+    }
+    form button img {
+        height: 20px;
+        width: 20px;
+        margin-top: -7px;
+        text-align: center;
+    }
+    form #submit {
+        width: 250px;
+        margin-left: 70px;
+        font-size: 5px;
+    }
+    form #submit input {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        margin: 10px;
+    }
+    form {
+        padding: 10px;
+        height: 750px;
+        width: 350px;
+    }
+    h2 {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    form #titleID input {
+        height: 30px;
+        width: 300px;
+        margin-top: -5px;
+    }
+    form #descriptionID input {
+        height: 80px;
+        width: 300px;
+        margin-top: -5px;
+    }
+    form #locationID input {
+        height: 40px;
+        width: 300px;
+        margin-top: 10px;
+    }
+    form button {
+        height: 30px;
+        width: 100px;
+        font-size: 8px;
+        margin-left: 3px;
+    }
+    form button img {
+        height: 20px;
+        width: 20px;
+        margin-top: -7px;
+        text-align: center;
+    }
+    form #submit {
+        width: 250px;
+        margin-left: 50px;
+    }
+    footer {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .logo-container {
+        height: 40px;
+    }
+    main {
+        margin: 10px;
+    }
+    form {
+        padding: 10px;
+        height: 730px;
+        width: 350px;
+        font-size: 0.7em;
+    }
+    form #titleID input {
+        height: 30px;
+        width: 250px;
+    }
+    form #descriptionID input {
+        height: 80px;
+        width: 250px;
+    }
+    form #locationID input {
+        height: 40px;
+        width: 250px;
+    }
+
+    form button {
+        height: 30px;
+        width: 85px;
+        font-size: 8px;
+    }
+    form button img {
+        height: 20px;
+        width: 20px;
+        margin-top: -7px;
+        text-align: center;
+    }
+    form #submit {
+        width: 230px;
+    }
+    form #submit img {
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+        margin-top: 4px;
+    }
+    form #submit input {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    main {
+        margin: 10px;
+    }
+    form {
+        padding: 10px;
+        height: 730px;
+        width: 300px;
+        font-size: 0.6em;
+    }
+    form #titleID input {
+        height: 30px;
+        width: 250px;
+    }
+    form #locationID input {
+        height: 40px;
+        width: 250px;
+    }
+    form #descriptionID input {
+        height: 80px;
+        width: 250px;
+    }
+    form button {
+        height: 30px;
+        width: 85px;
+        font-size: 8px;
+        padding-top: 8px;
+    }
+    form button img {
+        height: 15px;
+        width: 15px;
+        margin-top: -4px;
+        margin-left: -3px;
+    }
+    form #submit {
+        width: 175px;
+    }
+    form #submit input {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    main {
+        margin: 10px;
+    }
+    form {
+        padding: 10px;
+        height: 690px;
+        width: 250px;
+    }
+    h2 {
+        font-size: 12px;
+        margin-bottom: 15px;
+    }
+    form #titleID input {
+        height: 30px;
+        width: 200px;
+        margin-top: -2px;
+    }
+    form #descriptionID input {
+        height: 80px;
+        width: 200px;
+        margin-top: -5px;
+    }
+    form #locationID input {
+        height: 40px;
+        width: 200px;
+        margin-top: 10px;
+    }
+    form button {
+        height: 25px;
+        width: 70px;
+        font-size: 7px;
+        padding-top: 6px;
+    }
+    form button img {
+        height: 12px;
+        width: 12px;
+        margin-top: -4px;
+    }
+    form #submit {
+        width: 135px;
+        height: 40px;
+    }
+    form #submit img {
+        width: 25px;
+        height: 25px;
+        margin-left: 10px;
+        margin-top: 8px;
+    }
+    form #submit input {
+        font-size: 10px;
+        margin-left: -2px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .logo-container {
+        height: 30px;
+    }
+    main {
+        margin: 10px;
+    }
+    form {
+        padding: 10px;
+        height: 700px;
+        width: 250px;
+    }
+    h2 {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+    form #titleID input {
+        height: 30px;
+        width: 200px;
+        margin-top: 0px;
+    }
+    form #descriptionID input {
+        height: 80px;
+        width: 200px;
+        margin-top: -2px;
+    }
+    form #locationID input {
+        height: 40px;
+        width: 200px;
+        margin-top: 10px;
+    }
+    form button {
+        height: 25px;
+        width: 70px;
+        font-size: 7.5px;
+        padding-left: 5px;
+        padding-bottom: 5px;
+        margin-left: 2px;
+    }
+    form button img {
+        height: 15px;
+        width: 15px;
+        margin-top: -3px;
+    }
+    form #submit {
+        width: 160px;
+        height: 40px;
+        margin-left: 35px;
+    }
+    form #submit img {
+        width: 20px;
+        height: 20px;
+        margin-left: 10px;
+        margin-top: 8px;
+    }
+    form #submit input {
+        font-size: 8px;
+        margin-left: -2px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .logo-container {
+        height: 30px;
+    }
+    #homeArrow{
+        size: 10px;
+        margin-top: -25px;
+    }
+    main {
+        margin: 10px;
+    }
+    form {
+        padding: 10px;
+        height: 700px;
+        width: 220px;
+    }
+    form #titleID input {
+        height: 30px;
+        width: 180px;
+        margin-top: 0px;
+    }
+    form #descriptionID input {
+        height: 80px;
+        width: 180px;
+        margin-top: -2px;
+    }
+    form #locationID input {
+        height: 40px;
+        width: 180px;
+        margin-top: 10px;
+    }
+    form button {
+        height: 25px;
+        width: 65px;
+        font-size: 7px;
+        padding-left: 5px;
+        padding-bottom: 5px;
+        margin-left: -2.5px;
+    }
+    form button img {
+        height: 15px;
+        width: 15px;
+        margin-top: -3px;
+    }
+  
+}

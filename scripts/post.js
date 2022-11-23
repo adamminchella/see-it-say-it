@@ -18,6 +18,7 @@ const exitButton = document.querySelector(".exit-gif-search");
 
 
 
+
 const blurBackground = document.querySelector(".blur");
 
 const postId = window.location.href.split("=")[1];
@@ -67,7 +68,9 @@ function displayComments(commentData) {
       const commentGif = document.createElement("img");
       if (comment.gif != "gif url...") {
 
+
         // console.log(commentGif);
+
 
         commentGif.src = comment.gif;
       } else {
@@ -81,7 +84,9 @@ function displayComments(commentData) {
       const commentDate = document.createElement("p");
       commentDate.classList.add("comment-date");
 
+
       commentDate.textContent = new Date(comment.date).toString().slice(0, 21);
+
 
 
       commentCard.appendChild(commentId);
@@ -150,12 +155,15 @@ emojis.forEach((emoji) => {
 
 
 
+
 commentInputField.addEventListener("click", () => {
+
 
 
   gifIconContainer.classList.remove("hidden");
   commentInputButton.classList.remove("hidden");
 });
+
 
 
 
@@ -171,7 +179,6 @@ commentInputField.addEventListener("click", () => {
 // });
 
 
-
 document.addEventListener("click", (e) => {
   console.log(e.target);
   if (
@@ -181,7 +188,6 @@ document.addEventListener("click", (e) => {
     commentInputField.value == "" &&
     !e.target.classList.contains("exit-gif-search") &&
 
-
     !e.target.classList.contains("close-icon") &&
 
 
@@ -189,6 +195,7 @@ document.addEventListener("click", (e) => {
     !e.target.classList.contains("gif-search-button") &&
     !e.target.classList.contains("search-icon") &&
     !e.target.classList.contains("gifImg") &&
+
 
 
     !e.target.classList.contains("blur") &&
@@ -211,6 +218,7 @@ commentInputButton.addEventListener("click", () => {
   const selectedGifContainer = document.querySelector(
     ".selected-gif-container"
   );
+
 
 
   if (
@@ -262,8 +270,6 @@ gifIconContainer.addEventListener("click", () => {
   );
 
 
-
-
   if (selectedGifContainer.children.length > 0) {
     return;
   }
@@ -279,13 +285,11 @@ gifIconContainer.addEventListener("click", () => {
 gifSearchButton.addEventListener("click", () => {
   const gifContainer = document.querySelector(".gif-container");
 
-
   const gifSearchInput = document.querySelector(".gif-search-input-field");
   const url = `http://api.giphy.com/v1/gifs/search?q=${gifSearchInput.value}&api_key=LdS1Lnx8uwLjE30dp797RTX5JA9L7YxD`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-
 
       data.data.forEach((element) => {
         const src = element.images.fixed_height_small.url;
@@ -304,6 +308,7 @@ gifSearchButton.addEventListener("click", () => {
           gifSearchContainer.classList.add("hidden");
 
 
+
           blurBackground.classList.add("hidden");
           gifSearchInput.value = "";
           gifContainer.replaceChildren();
@@ -317,6 +322,7 @@ gifSearchButton.addEventListener("click", () => {
 exitButton.addEventListener("click", () => {
   const gifSearchContainer = document.querySelector(".gif-search-container");
   gifSearchContainer.classList.add("hidden");
+
 
 
   blurBackground.classList.add("hidden");

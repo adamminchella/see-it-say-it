@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/create_post.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
     <script src="../scripts/create_page.js" defer></script>
     <title>Create Post</title>
 </head>
@@ -17,7 +22,7 @@
         <nav>
           <div></div>
           <div>
-            <a href="../index.html">
+            <a href="home.html">
               <div class="all-posts-nav">
                 <span class="icon"><i class='bx bx-left-arrow-alt bx-md'></i></span>
                 All posts
@@ -40,13 +45,17 @@
         <section id="descriptionID" class="entry">
             <label for="description">Please enter additional <b>description</b> and details about your post: <i>(Max 500 characters)</i></label>
             <br>
+
             <input type="text" name="description" id="myDescription" maxlength="200">
+
         </section>
         <section id="locationID" class="entry">
             <label for="location">Please enter the <b>postcode</b> of your post:</label>
             <br>
 
+
             <input type="text" name="location" id="myLocation" maxlength="8">
+
 
         </section>
         <br>
@@ -105,5 +114,7 @@
 
 </body>
 
+
 </html>
+
 

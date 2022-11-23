@@ -233,10 +233,12 @@ main {
   cursor: pointer;
 }
 
+
 /* .comment-button-inactive {
   filter: opacity(0.5);
   cursor: default;
 } */
+
 
 .comment-button:hover {
   background-color: rgb(195, 97, 89);

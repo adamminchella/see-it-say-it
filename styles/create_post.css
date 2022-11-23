@@ -84,6 +84,7 @@ main {
     padding: 20px;
 }
 
+
 form h2 {
     text-align: center;
     margin-top: -20px;
@@ -143,12 +144,9 @@ form button {
     text-align: center;
 }
 
-
-
 form button:hover {
     background-color: rgb(54, 98, 121);
 }
-
 
 form button img {
     height: 25px;
@@ -156,7 +154,6 @@ form button img {
     align-self: center;
     margin-right: 5px;
 }
-
 
 form #submit {
     display: flex;
@@ -170,6 +167,7 @@ form #submit input {
     justify-content: center;
     border: none;
     background-color: white;
+
 }
 
 footer {
@@ -177,4 +175,3 @@ footer {
     padding: 20px;
     background-color: var(--light);
 }
-

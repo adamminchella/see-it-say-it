@@ -16,8 +16,13 @@ const commentInputButton = document.querySelector(".comment-button");
 const commentInputField = document.querySelector("#comment-input-field");
 const exitButton = document.querySelector(".exit-gif-search");
 
+
+
+const blurBackground = document.querySelector(".blur");
+
 const postId = window.location.href.split("=")[1];
-console.log(postId);
+
+
 
 async function fetchData(postId) {
   const url = `http://localhost:3000/api/posts/${postId}`;
@@ -61,7 +66,9 @@ function displayComments(commentData) {
 
       const commentGif = document.createElement("img");
       if (comment.gif != "gif url...") {
-        console.log(commentGif);
+
+        // console.log(commentGif);
+
         commentGif.src = comment.gif;
       } else {
         commentGif.classList.add("hidden");
@@ -73,7 +80,9 @@ function displayComments(commentData) {
 
       const commentDate = document.createElement("p");
       commentDate.classList.add("comment-date");
-      commentDate.textContent = new Date(comment.date).toString().slice(0, 24);
+
+      commentDate.textContent = new Date(comment.date).toString().slice(0, 21);
+
 
       commentCard.appendChild(commentId);
 
@@ -139,10 +148,29 @@ emojis.forEach((emoji) => {
   });
 });
 
-commentInput.addEventListener("click", () => {
+
+
+commentInputField.addEventListener("click", () => {
+
+
   gifIconContainer.classList.remove("hidden");
   commentInputButton.classList.remove("hidden");
 });
+
+
+
+// commentInputField.addEventListener("input", () => {
+//   if (
+//     commentInputField.value != "" &&
+//     commentInputButton.classList.contains("comment-button-inactive")
+//   ) {
+//     commentInputButton.classList.remove("comment-button-inactive");
+//   } else if (commentInputField.value == "") {
+//     commentInputButton.classList.add("comment-button-inactive");
+//   }
+// });
+
+
 
 document.addEventListener("click", (e) => {
   console.log(e.target);
@@ -152,11 +180,23 @@ document.addEventListener("click", (e) => {
     e.target.id != "comment-input-field" &&
     commentInputField.value == "" &&
     !e.target.classList.contains("exit-gif-search") &&
+
+
+    !e.target.classList.contains("close-icon") &&
+
+
     !e.target.classList.contains("gif-search-input-field") &&
     !e.target.classList.contains("gif-search-button") &&
     !e.target.classList.contains("search-icon") &&
     !e.target.classList.contains("gifImg") &&
-    !e.target.classList.contains("selected-gif-container")
+
+
+    !e.target.classList.contains("blur") &&
+    !e.target.classList.contains("selected-gif-container") &&
+    !e.target.classList.contains("gif-container") &&
+    !e.target.classList.contains("gif-search-container")
+
+
   ) {
     if (!gifIconContainer.classList.contains("hidden")) {
       gifIconContainer.classList.add("hidden");
@@ -172,7 +212,13 @@ commentInputButton.addEventListener("click", () => {
     ".selected-gif-container"
   );
 
-  if (commentInputField.value === "" && !selectedGifContainer.children) {
+
+  if (
+    commentInputField.value === "" &&
+    selectedGifContainer.children.length == 0
+  ) {
+
+
     return;
   } else {
     let gifUrl;
@@ -214,24 +260,33 @@ gifIconContainer.addEventListener("click", () => {
   const selectedGifContainer = document.querySelector(
     ".selected-gif-container"
   );
-  console.log(selectedGifContainer.children);
+
+
+
+
   if (selectedGifContainer.children.length > 0) {
     return;
   }
   const gifSearchContainer = document.querySelector(".gif-search-container");
+
+
+  blurBackground.classList.remove("hidden");
+
+
   gifSearchContainer.classList.remove("hidden");
 });
 
 gifSearchButton.addEventListener("click", () => {
   const gifContainer = document.querySelector(".gif-container");
-  const gifSearchInput = document.querySelector(
-    ".gif-search-input-field"
-  ).value;
-  const url = `http://api.giphy.com/v1/gifs/search?q=${gifSearchInput}&api_key=LdS1Lnx8uwLjE30dp797RTX5JA9L7YxD`;
+
+
+  const gifSearchInput = document.querySelector(".gif-search-input-field");
+  const url = `http://api.giphy.com/v1/gifs/search?q=${gifSearchInput.value}&api_key=LdS1Lnx8uwLjE30dp797RTX5JA9L7YxD`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      gifContainer.replaceChildren();
+
+
       data.data.forEach((element) => {
         const src = element.images.fixed_height_small.url;
         const gif = document.createElement("img");
@@ -247,6 +302,13 @@ gifSearchButton.addEventListener("click", () => {
           );
           selectedGifContainer.appendChild(gif);
           gifSearchContainer.classList.add("hidden");
+
+
+          blurBackground.classList.add("hidden");
+          gifSearchInput.value = "";
+          gifContainer.replaceChildren();
+
+
         });
       });
     });
@@ -255,6 +317,11 @@ gifSearchButton.addEventListener("click", () => {
 exitButton.addEventListener("click", () => {
   const gifSearchContainer = document.querySelector(".gif-search-container");
   gifSearchContainer.classList.add("hidden");
+
+
+  blurBackground.classList.add("hidden");
+
+
 });
 
 const tx = document.getElementsByTagName("textarea");
@@ -271,6 +338,5 @@ function OnInput() {
   this.style.height = this.scrollHeight + "px";
 }
 
-document.addEventListener("click", (e) => e.target);
 
 window.addEventListener("load", displayPostData);

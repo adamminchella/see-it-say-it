@@ -11,14 +11,24 @@
 </head>
 <body>
     <header>
+        <div class="logo-container">
+            <img id="logo" src="../assets/images/logo.png" alt="logo">
+        </div>
         <nav>
-            <div id="logo">
-                <a href="#">
-                    <img src="../assets/images/Images_create_post/Blog_logo .png" alt="See it, Say it logo">
-                </a>
-            </div>
+          <div></div>
+          <div>
+            <a href="../index.html">
+              <div class="all-posts-nav">
+                <span class="icon"><i class='bx bx-left-arrow-alt bx-md'></i></span>
+                All posts
+              </div>
+            </a>
+          </div>
         </nav>
-    </header>
+        <div>
+            <img id="skyline" src="../assets/images/skyline-edit.svg" alt="skyline of london">
+        </div>
+      </header>
 <main>
     <form>
         <h2>Please fill in the form below to create a new blog post:</h2>
@@ -35,12 +45,15 @@
         <section id="locationID" class="entry">
             <label for="location">Please enter the <b>postcode</b> of your post:</label>
             <br>
+
             <input type="text" name="location" id="myLocation" maxlength="8">
+
         </section>
         <br>
         <section>
             <label for="labelInput">Please add up to 3 <b>labels:</b></label>
             <div id="labels">
+
                 <button value="food" class="button">
                     <img src="../assets/images/Images_create_post/Food-drink.png" alt="">
                 Food and Drink</button>
@@ -77,6 +90,7 @@
                 <button value="christmas">
                     <img src="../assets/images/Images_create_post/christmas.png" alt="">
                 Christmas</button>
+
             </div>
         <section id="submit">
             <img src="../assets/images/Images_create_post/add.png" alt="">
@@ -90,4 +104,6 @@
 </footer>
 
 </body>
+
 </html>
+

@@ -11,6 +11,8 @@
 }
 
 body {
+  height: fit-content;
+  position: relative;
   margin: 0;
   padding: 0;
   font-family: Roboto, sans-serif;
@@ -231,10 +233,10 @@ main {
   cursor: pointer;
 }
 
-.comment-button-inactive {
+/* .comment-button-inactive {
   filter: opacity(0.5);
   cursor: default;
-}
+} */
 
 .comment-button:hover {
   background-color: rgb(195, 97, 89);
@@ -257,6 +259,7 @@ main {
   left: 0;
   right: 0;
   text-align: center;
+  z-index: 2;
 }
 
 .gif-input-container {
@@ -294,12 +297,12 @@ main {
   height: 90%;
   margin-right: 2px;
   cursor: pointer;
-  transition: width 0.2s;
+  transition: width 0.15s;
 }
 
 .gif-search-button:hover {
   width: 70px;
-  transition: width 0.2s;
+  /* transition: width 0.2s; */
 }
 
 .search-icon {
@@ -323,4 +326,13 @@ main {
   top: 20px;
   right: 20px;
   cursor: pointer;
+}
+
+.blur {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  backdrop-filter: blur(2px);
+  z-index: 1;
 }

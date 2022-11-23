@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/create_post.css">
+    <link rel="stylesheet" href="../styles/create_post.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-    <script src="../assets/javascript/create_page.js" defer></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="../assets/css/create_post.css" defer></script>
-
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+    <script src="../scripts/create_page.js" defer></script>
     <title>Create Post</title>
 </head>
 <body>
@@ -21,7 +22,7 @@
         <nav>
           <div></div>
           <div>
-            <a href="../index.html">
+            <a href="home.html">
               <div class="all-posts-nav">
                 <span class="icon"><i class='bx bx-left-arrow-alt bx-md'></i></span>
                 All posts
@@ -33,86 +34,72 @@
             <img id="skyline" src="../assets/images/skyline-edit.svg" alt="skyline of london">
         </div>
       </header>
-      
 <main>
     <form>
         <h2>Please fill in the form below to create a new blog post:</h2>
         <section id="titleID" class="entry">
             <label for="title">Please enter a <b>title</b> for your post: <i>(Max 200 characters)</i></label>
             <br>
-            <input type="text" name="title" id="myTitle">
+            <input type="text" name="title" id="myTitle" maxlength="200">
         </section>
         <section id="descriptionID" class="entry">
             <label for="description">Please enter additional <b>description</b> and details about your post: <i>(Max 500 characters)</i></label>
             <br>
-            <input type="text" name="description" id="myDescription">
+
+            <input type="text" name="description" id="myDescription" maxlength="200">
+
         </section>
         <section id="locationID" class="entry">
             <label for="location">Please enter the <b>postcode</b> of your post:</label>
             <br>
-            <input type="text" name="location" id="myLocation">
+
+
+            <input type="text" name="location" id="myLocation" maxlength="8">
+
+
         </section>
         <br>
         <section>
             <label for="labelInput">Please add up to 3 <b>labels:</b></label>
             <div id="labels">
-                <div id="food-drink" class="label">
-                    <button value="food" class="button">
-                        <img src="../assets/images/Images_create_post/Food-drink.png" alt="">
-                    Food and Drink</button>
-                </div>
-                <div id="travel" class="label">
-                    <button value="travel" class="button">
-                        <img src="../assets/images/Images_create_post/travel.png" alt="">
-                    Travel</button>
-                </div>
-                <div id="nightlife" class="label">
-                    <button value="night" class="button">
-                        <img src="../assets/images/Images_create_post/nightlife.png" alt="">
-                    Nightlife</button>
-                </div>
-                <div id="saftey" class="label">
-                    <button value="safety" class="button">
-                        <img src="../assets/images/Images_create_post/saftey.png" alt="">
-                    Safety</button>
-                </div>
-                <div id="stay" class="label">
-                    <button value="stay" class="button">
-                        <img src="../assets/images/Images_create_post/stay.png" alt="">
-                    Places to Stay</button>
-                </div>
-                <div id="outdoors" class="label">
-                    <button value="outdoors" class="button">
-                        <img src="../assets/images/Images_create_post/outdoors.png" alt="">
-                    Outdoors</button>
-                </div>
-                <div id="shopping" class="label">
-                    <button value="shopping" class="button">
-                        <img src="../assets/images/Images_create_post/shopping.png" alt="">
-                    Shopping</button>
-                </div>
-                <div id="Attractions" class="label">
-                    <button value="attractions" class="button">
-                        <img src="../assets/images/Images_create_post/attractions.png" alt="">
-                    Attractions</button>
-                </div>
-                <div id="wellness" class="label">
-                    <button value="wellness" class="button">
-                        <img src="../assets/images/Images_create_post/wellness.png" alt="">
-                    Wellness</button>
-                </div>
-                <div id="fitness" class="label">
-                    <button value="fitness"><img src="../assets/images/Images_create_post/fitness.png" alt="">
-                    Fitness</button>
-                </div>
-                <div id="Test" class="label">
-                    <button value="test1"><img src="../assets/images/Images_create_post/Food-drink.png" alt="">
-                    Test</button>
-                </div>
-                <div id="Test" class="label">
-                    <button value="test2"><img src="../assets/images/Images_create_post/travel.png" alt="">
-                    Test</button>
-                </div>
+
+                <button value="food" class="button">
+                    <img src="../assets/images/Images_create_post/Food-drink.png" alt="">
+                Food and Drink</button>
+                <button value="travel" class="button">
+                    <img src="../assets/images/Images_create_post/travel.png" alt="">
+                Travel</button>
+                <button value="night" class="button">
+                    <img src="../assets/images/Images_create_post/nightlife.png" alt="">
+                Nightlife</button>
+                <button value="safety" class="button">
+                    <img src="../assets/images/Images_create_post/saftey.png" alt="">
+                Safety</button>
+                <button value="stay" class="button">
+                    <img src="../assets/images/Images_create_post/stay.png" alt="">
+                Places to Stay</button>
+                 <button value="outdoors" class="button">
+                    <img src="../assets/images/Images_create_post/outdoors_new.png" alt="">
+                Outdoors</button>
+                <button value="shopping" class="button">
+                    <img src="../assets/images/Images_create_post/shopping.png" alt="">
+                Shopping</button>
+                <button value="attractions" class="button">
+                    <img src="../assets/images/Images_create_post/attractions.png" alt="">
+                Attractions</button>
+                <button value="wellness" class="button">
+                    <img src="../assets/images/Images_create_post/wellness.png" alt="">
+                Wellness</button>
+                <button value="fitness">
+                    <img src="../assets/images/Images_create_post/fitness.png" alt="">
+                Fitness</button>
+                <button value="Fun">
+                    <img src="../assets/images/Images_create_post/fun.png" alt="">
+                Fun</button>
+                <button value="christmas">
+                    <img src="../assets/images/Images_create_post/christmas.png" alt="">
+                Christmas</button>
+
             </div>
         <section id="submit">
             <img src="../assets/images/Images_create_post/add.png" alt="">
@@ -126,4 +113,8 @@
 </footer>
 
 </body>
+
+
 </html>
+
+

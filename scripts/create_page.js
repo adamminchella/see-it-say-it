@@ -1,5 +1,8 @@
-let button = document.getElementsByClassName("button");
+const button = document.getElementsByClassName("button");
 const form = document.querySelector("form");
+
+console.log(button)
+
 
 let labels = []
 
@@ -11,10 +14,16 @@ Array.from(button).forEach(button => {
          if (!isButtonClicked(clickedButton)) {
             if (labels.length < 3) {
                labels.push(clickedButton)
+
+
+               button.style.backgroundColor = "rgb(" + 54 + "," + 98 + "," + 121 +")";
             }
          } 
          else {
-            labels.splice(labels.indexOf(clickedButton), 1)
+            labels.splice(labels.indexOf(clickedButton), 1);
+            button.style.backgroundColor = "rgb(" + 71 + "," + 128 + "," + 157 +")";
+
+
          }
          console.log(labels)
    })

@@ -1,81 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/styles.css">
-    <script defer src="./assets/javascript/home.js"></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>See It, Say It</title>
-</head>
-<body>
-
-    <header>
-        <div class="logo-container">
-            <img id="logo" src="./assets/images/logo.png" alt="logo">
-        </div>
-        <nav></nav>
-        <div>
-            <img id="skyline" src="./assets/images/skyline-edit.svg" alt="skyline of london">
-        </div>
-    </header>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing page</title>
+    <link rel="stylesheet" href="../assets/css/landing.css" />
+  </head>
+  <body>
     <main>
-        <a id="newPost" href="#">
-            <span class="icon"><i class='bx bx-plus bx-md'></i></span>
-            New Post
+      <div class="content">
+        <img id="logo" src="../assets/images/logo.png" alt="logo">
+
+        <!-- <h1>
+          See it, <br />
+          say it
+        </h1> -->
+        <p>
+          A platform for discovering the trendiest establishments throughout
+          London.
+        </p>
+        <a href="../index.html">
+          <button type="button">Enter!</button>
         </a>
-
-        <h2>Recent Posts</h2>
-
-        <div id="postTemplate" class="post">
-            <img class="postImage" src="http://london.com/wp-content/uploads/2019/03/london_001.jpg" alt="image">
-            <div class="postHeader">
-                <h2 class="postTitle">Post Title</h2>
-                <div>
-                    <ul class="emojis">
-                        <li>
-                            <span class ="emoji icon liked"><i class='bx bx-like bx-sm'></i></span>
-                            <span class="like">0</span>
-                        </li>
-                        <li>
-                            <span class ="emoji icon disliked"><i class='bx bx-dislike bx-sm'></i></span>
-                            <span class="dislike">0</span>
-                        </li>
-                        <li>
-                            <span class ="emoji icon surprised"><i class='bx bx-shocked bx-sm'></i></span>
-                            <span class="surprise">0</span>
-                        </li>
-                    </ul>
-
-                </div>
-               
-            </div>
-            
-            <div class="postInfo">
-                <span class="icon"><i class='bx bx-calendar bx-sm'></i></span>
-                <span class="postDate">Date</span>
-                <span class="icon"><i class='bx bx-map bx-sm'></i></span>
-                <span class="postLocation">Location</span>
-            </div>
-
-            <div>
-                <ul class="labels">
-                </ul>
-            </div>
-            <h3 class="commentHeader">Comments</h3>
-            <div class="comments">
-                
-            </div>
-        </div>
-
-       
-
+      </div>
+      <div class="image-wrapper">
+        <div class="landing-img"></div>
+        <!-- <img
+        class="landing-img"
+        src="../assets/images/marcel-heil-j_PZJiA9gE4-unsplash.jpg"
+        alt=""
+        /> -->
+      </div>
     </main>
-
-    <footer>
-        @Copyright Duck & Divers 2022
-    </footer>
-</body>
+  </body>
 </html>

@@ -323,9 +323,13 @@ main {
 
 .exit-gif-search {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 16px;
+  right: 17px;
   cursor: pointer;
+}
+
+.close-icon {
+  width: 30px;
 }
 
 .blur {

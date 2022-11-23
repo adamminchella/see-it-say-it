@@ -164,6 +164,7 @@ document.addEventListener("click", (e) => {
     e.target.id != "comment-input-field" &&
     commentInputField.value == "" &&
     !e.target.classList.contains("exit-gif-search") &&
+    !e.target.classList.contains("close-icon") &&
     !e.target.classList.contains("gif-search-input-field") &&
     !e.target.classList.contains("gif-search-button") &&
     !e.target.classList.contains("search-icon") &&

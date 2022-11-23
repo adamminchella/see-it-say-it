@@ -28,7 +28,7 @@ async function fetchData(postId) {
     .then((data) => {
       postData = data;
     });
-
+  console.log(postData);
   return postData;
 }
 
@@ -48,6 +48,7 @@ function displayComments(commentData) {
   if (commentData.length === 0) {
     commentsHeader.textContent = "Be the first to comment!";
   } else {
+    commentsHeader.textContent = "Comments";
     commentData.forEach((comment, index) => {
       const commentCard = document.createElement("div");
       commentCard.classList.add("comment-card");
@@ -93,10 +94,24 @@ function displayComments(commentData) {
 async function displayPostData() {
   const postData = await fetchData(postId);
   const commentData = postData.comments;
+  const labelData = postData.labels;
   console.log(commentData);
   displayTitleData(postData);
   displayEmojis();
+  displayLabels(labelData);
   displayComments(commentData);
+}
+
+function displayLabels(labelData) {
+  const labelsContainer = document.querySelector(".labels-container");
+  if (labelData.length > 0) {
+    labelData.forEach((label) => {
+      const labelDiv = document.createElement("div");
+      labelDiv.textContent = label;
+      labelsContainer.appendChild(labelDiv);
+    });
+  }
+  console.log(labelData);
 }
 
 function displayEmojis() {

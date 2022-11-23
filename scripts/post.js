@@ -269,7 +269,7 @@ gifIconContainer.addEventListener("click", () => {
 gifSearchButton.addEventListener("click", () => {
   const gifContainer = document.querySelector(".gif-container");
   const gifSearchInput = document.querySelector(".gif-search-input-field");
-  const url = `http://api.giphy.com/v1/gifs/search?q=${gifSearchInput.value}&api_key=LdS1Lnx8uwLjE30dp797RTX5JA9L7YxD`;
+  const url = `https://api.giphy.com/v1/gifs/search?q=${gifSearchInput.value}&api_key=LdS1Lnx8uwLjE30dp797RTX5JA9L7YxD`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {

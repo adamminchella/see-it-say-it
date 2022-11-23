@@ -1,6 +1,6 @@
 // Loads all posts
 async function loadData() {
-  await fetch("https://see-it-say-it-api.herokuapp.com/api/posts")
+  await fetch("http://localhost:3000/api/posts")
     .then((r) => {
       if (!r.ok) {
         throw new Error("Network response was not OK");
@@ -26,7 +26,7 @@ async function loadData() {
 
 // Adds data to card
 function writeToCard(cardId, i) {
-  fetch("https://see-it-say-it-api.herokuapp.com/api/posts/")
+  fetch("http://localhost:3000/api/posts/")
     .then((r) => {
       if (!r.ok) {
         throw new Error("Network response was not OK");
@@ -98,7 +98,7 @@ function createCard(id) {
 function emojiCount(cardId) {
   const post = document.getElementById(cardId);
   const emojis = post.getElementsByClassName("emoji");
-  const url = `https://see-it-say-it-api.herokuapp.com/api/posts/${post.id}/emojis`;
+  const url = `http://localhost:3000/api/posts/${post.id}/emojis`;
 
   let emojiSelected = false;
   let emojiParam = localStorage.getItem(cardId);
@@ -149,7 +149,7 @@ function emojiUpdate(cardId, emoji) {
 
   // const classChange = icon.childNodes[0].className.replace('x bx-', 'x bxs-');
 
-  fetch(`https://see-it-say-it-api.herokuapp.com/api/posts/${post.id}/emojis`, {
+  fetch(`http://localhost:3000/api/posts/${post.id}/emojis`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

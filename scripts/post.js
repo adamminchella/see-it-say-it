@@ -21,7 +21,7 @@ const blurBackground = document.querySelector(".blur");
 const postId = window.location.href.split("=")[1];
 
 async function fetchData(postId) {
-  const url = `https://see-it-say-it-api.herokuapp.com/api/posts/${postId}`;
+  const url = `http://localhost:3000/api/posts/${postId}`;
   let postData;
   await fetch(url)
     .then((res) => res.json())
@@ -132,7 +132,7 @@ function displayEmojis() {
     }
     emoji.addEventListener("click", () => {
       // const emojiType = emoji.children[1].classList.value;
-      const url = `https://see-it-say-it-api.herokuapp.com/api/posts/${postId}/emojis`;
+      const url = `http://localhost:3000/api/posts/${postId}/emojis`;
       if (emoji.classList.contains("like") && !isEmojiSelected) {
         fetch(url, {
           method: "PUT",
@@ -243,7 +243,7 @@ commentInputButton.addEventListener("click", () => {
     } else {
       gifUrl = "gif url...";
     }
-    const url = `https://see-it-say-it-api.herokuapp.com/api/posts/${postId}/comments`;
+    const url = `http://localhost:3000/api/posts/${postId}/comments`;
     fetch(url, {
       method: "POST",
       headers: {

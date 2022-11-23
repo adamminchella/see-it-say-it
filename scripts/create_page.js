@@ -49,7 +49,7 @@ form.addEventListener("submit", function (e) {
 
   console.log(dataToSend);
 
-  fetch("https://see-it-say-it-api.herokuapp.com/api/posts", {
+  fetch("http://localhost:3000/api/posts", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

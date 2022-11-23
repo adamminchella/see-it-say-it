@@ -8,7 +8,7 @@ async function loadData() {
     })
     .then(Data => {
         let numPosts = Data.length;
-        for (let i = 0; i < numPosts; i ++) {
+        for (let i = numPosts-1; i >= 0; i --) {
             createCard(Data[i].postId, i);
             writeToCard(Data[i].postId, i);
             emojiCount(Data[i].postId);
@@ -58,7 +58,7 @@ function writeToCard(cardId, i) {
 
 
         recentComment = postData.comments[numComments-1].text
-        if (recentComment == undefined) {
+        if (recentComment == "") {
             recentComment = 'GIF'
         }
         let text = document.createTextNode(recentComment)
@@ -93,42 +93,37 @@ function emojiCount(cardId) {
     
     const post = document.getElementById(cardId);
     const emojis = post.getElementsByClassName('emoji');
-    const url = `http://localhost:3000/api/posts/${post.id}/emojis`;
+   
     
-    let emojiSelected = false;
-    let emojiParam = localStorage.getItem(cardId);
+    emojiSet(cardId, 'like', true);
+    let emojiParam = JSON.parse(localStorage.getItem(cardId));
 
 
-    if (emojiParam) {
-        emojiSelected = true;
-    } 
     
     for (const emoji of emojis) {
-
+        
         let classChange = emoji.childNodes[0].className.replace('x bx-', 'x bxs-');
-        if (emoji.classList.contains(`${emojiParam}`)) {
-            emoji.childNodes[0].className = classChange;
-        } 
-        else if (emoji.classList.contains('surprise') && emojiParam == 'shocked') {
+        if (emojiParam[emoji.classList[2]]) {
             emoji.childNodes[0].className = classChange;
         }
 
 
         emoji.addEventListener('click', () => {
-            if (emoji.classList.contains('like') && emojiSelected == false) {
+            emojiParam = JSON.parse(localStorage.getItem(cardId));
+            if (emoji.classList.contains('like') && emojiParam['like'] == false) {
                 emojiUpdate(cardId, 'like')
                 emoji.childNodes[0].className = classChange;
-                emojiSelected = true;
+                emojiSet(cardId, 'like');
             } 
-            else if (emoji.classList.contains('dislike') && emojiSelected == false) {
+            else if (emoji.classList.contains('dislike') && emojiParam['dislike'] == false) {
                 emojiUpdate(cardId, 'dislike')
                 emoji.childNodes[0].className = classChange;
-                emojiSelected = true;
+                emojiSet(cardId, 'dislike');
             } 
-            else if (emoji.classList.contains('surprise') && emojiSelected == false) {
+            else if (emoji.classList.contains('surprise') && emojiParam['surprise'] == false) {
                 emojiUpdate(cardId, 'surprise')
                 emoji.childNodes[0].className = classChange;
-                emojiSelected = true;
+                emojiSet(cardId, 'surprise');
             }
         })
     }
@@ -136,11 +131,10 @@ function emojiCount(cardId) {
 
 function emojiUpdate(cardId, emoji) {
     const post = document.getElementById(cardId);
-    const icon = post.getElementsByClassName(emoji)[0];
     const count = post.getElementsByClassName(`${emoji}Count`)[0];
 
-    // const classChange = icon.childNodes[0].className.replace('x bx-', 'x bxs-');
 
+    
     fetch(`http://localhost:3000/api/posts/${post.id}/emojis`, {
         method: "PUT",
         headers: {
@@ -151,12 +145,25 @@ function emojiUpdate(cardId, emoji) {
         .then((res) => res.json())
         .then((data) => {
           count.textContent = data.emojis[emoji];
-        //   icon.className = classChange;
-          localStorage.setItem(cardId, emoji);
         });
+
+    
 }
 
-
+function emojiSet(cardId, emoji, set) {
+    let emojiToggles = {
+        like: false,
+        dislike: false,
+        surprise: false
+    }
+    let emojis = JSON.parse(localStorage.getItem(cardId))
+    if (!emojis) {
+        localStorage.setItem(cardId, JSON.stringify(emojiToggles))
+    } else if (!set) {
+        emojis[emoji] = true;
+        localStorage.setItem(cardId, JSON.stringify(emojis))
+    }
+}
 
 
 window.addEventListener('load', loadData);

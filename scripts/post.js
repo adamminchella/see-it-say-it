@@ -115,7 +115,7 @@ function displayEmojis() {
     ) {
       emoji.childNodes[0].className = classChange;
     }
-    emoji.addEventListener("click", (isEmojiSelected) => {
+    emoji.addEventListener("click", () => {
       // const emojiType = emoji.children[1].classList.value;
       const url = `http://localhost:3000/api/posts/${postId}/emojis`;
       if (emoji.classList.contains("like") && !isEmojiSelected) {

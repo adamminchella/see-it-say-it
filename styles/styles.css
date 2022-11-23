@@ -17,21 +17,38 @@ body {
 }
 
 #logo {
-    height: 150px;
+    height: 100px;
     width: auto;
     margin: auto;
 }
 
 header {
+    position: relative;
+    background: bisque;
+}
+
+header > div:last-child {
+    position: absolute;
+    left: 0px;
+    bottom: 80px;
+    width: 100%
+}
+
+.logo-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 3rem;
+    padding: 1rem 0px 120px 0px;
+}
+
+nav {
+    height: 120px;
+    background-color: var(--light);
 }
 
 footer {
-    margin-top: 3rem;
+    margin: 2rem 0px;
     text-align: center;
 }
 
@@ -48,6 +65,7 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    padding: 1rem 0px;
 }
 
 
@@ -57,6 +75,10 @@ main {
     margin-bottom: 20px;
     border-radius: 10px; 
     box-shadow: 5px 5px 5px 5px var(--secondary);
+}
+
+.postImage:hover {
+    cursor: pointer;
 }
 
 .postImage {
@@ -97,7 +119,9 @@ main {
     vertical-align: middle;
 }
 
-
+.icon:hover {
+    cursor: pointer; 
+}
 
 .labels {
     padding-left: 10px;

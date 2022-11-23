@@ -54,6 +54,7 @@ function writeToCard(cardId, i) {
             recentComment = 'GIF'
         }
         let text = document.createTextNode(recentComment)
+
         comment.appendChild(text);
         post.getElementsByClassName('comments')[0].appendChild(comment);
 
@@ -79,6 +80,7 @@ function emojiCount(cardId) {
     
     const post = document.getElementById(cardId);
     const emojis = post.getElementsByClassName('emoji');
+
     const likes = post.getElementsByClassName('likeCount')[0];
     const dislikes = post.getElementsByClassName('dislikeCount')[0];
     const surprised = post.getElementsByClassName('surpriseCount')[0];
@@ -86,6 +88,7 @@ function emojiCount(cardId) {
     
     let emojiSelected = false;
     let emojiParam = localStorage.getItem(cardId);
+
     if (emojiParam) {
             emojiSelected = true;
         } 
@@ -153,9 +156,6 @@ function emojiCount(cardId) {
         })
     }
 }
-
-
-
 
 
 window.addEventListener('load', loadData);

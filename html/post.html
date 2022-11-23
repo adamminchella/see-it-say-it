@@ -6,13 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/post.css" />
     <link
-    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-    rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
     />
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <script defer src="../scripts/post.js"></script>
     <title>Post</title>
   </head>
@@ -36,13 +54,11 @@
         </div>
       </nav>
       <div>
-
         <img
           id="skyline"
           src="../assets/images/skyline-edit.svg"
           alt="skyline of london"
         />
-
       </div>
     </header>
 
@@ -60,34 +76,25 @@
               <p class="description"></p>
             </div>
             <div class="emojis">
-              <div class="emoji-container">
-                <img
-                  class="emoji"
-                  src="../assets/images/like-light.png"
-                  alt=""
-                />
+              <div class="emoji-container like">
+                <i class="bx bx-like bx-sm"></i>
                 <p class="likes"></p>
               </div>
-              <div class="emoji-container">
-                <img
-                  class="emoji"
-                  src="../assets/images/like-light.png"
-                  alt=""
-                />
+              <div class="emoji-container dislike">
+                <i class="bx bx-dislike bx-sm"></i>
                 <p class="dislikes"></p>
               </div>
-              <div class="emoji-container">
-                <img
-                  class="emoji"
-                  src="../assets/images/like-light.png"
-                  alt=""
-                />
+              <div class="emoji-container surprise">
+                <i class="bx bx-shocked bx-sm"></i>
                 <p class="surprises"></p>
               </div>
             </div>
           </div>
         </div>
-        <h2 class="comments-header">Comments</h2>
+        <div class="header-and-labels-container">
+          <h2 class="comments-header"></h2>
+          <div class="labels-container"></div>
+        </div>
         <div class="comments-container">
           <!-- <div class="comment-card">
             <p class="comment-id">#1</p>
@@ -149,7 +156,6 @@
             >
               Comment
             </button>
-
           </div>
         </div>
         <div class="gif-search-container hidden">
@@ -181,7 +187,5 @@
     </main>
     <footer>@Copyright Duck & Divers 2022</footer>
     <div class="blur hidden"></div>
-
-
   </body>
 </html>

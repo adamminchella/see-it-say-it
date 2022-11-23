@@ -1,10 +1,11 @@
 // Loads all posts
 async function loadData() {
-    await fetch('http://localhost:3000/api/posts').then(r=> {
-        if (!r.ok) {
-            throw new Error('Network response was not OK');
-          }    
-        return r.json()
+  await fetch("http://localhost:3000/api/posts")
+    .then((r) => {
+      if (!r.ok) {
+        throw new Error("Network response was not OK");
+      }
+      return r.json();
     })
     .then(Data => {
         let numPosts = Data.length;
@@ -16,17 +17,21 @@ async function loadData() {
         document.getElementById('postTemplate').style.display = 'none';
     })
     .catch((error) => {
-        console.error('There has been a problem with your fetch operation:', error);
-      });
+      console.error(
+        "There has been a problem with your fetch operation:",
+        error
+      );
+    });
 }
 
 // Adds data to card
 function writeToCard(cardId, i) {
-    fetch('http://localhost:3000/api/posts/').then(r=> {
-        if (!r.ok) {
-            throw new Error('Network response was not OK');
-          }    
-        return r.json()
+  fetch("http://localhost:3000/api/posts/")
+    .then((r) => {
+      if (!r.ok) {
+        throw new Error("Network response was not OK");
+      }
+      return r.json();
     })
     .then(Data => {
         let postData = Data[i]
@@ -77,16 +82,18 @@ function writeToCard(cardId, i) {
     
     })
     .catch((error) => {
-        console.error('There has been a problem with your fetch operation:', error);
+      console.error(
+        "There has been a problem with your fetch operation:",
+        error
+      );
     });
 }
 
-
 function createCard(id) {
-    let post = document.getElementsByClassName('post')[0];
-    let newCard = post.cloneNode(true);
-    newCard.id = id;
-    document.getElementsByTagName('main')[0].appendChild(newCard);
+  let post = document.getElementsByClassName("post")[0];
+  let newCard = post.cloneNode(true);
+  newCard.id = id;
+  document.getElementsByTagName("main")[0].appendChild(newCard);
 }
 
 function emojiCount(cardId) {

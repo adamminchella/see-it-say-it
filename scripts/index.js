@@ -184,8 +184,7 @@ function emojiSet(cardId, emoji, set) {
 }
 
 window.addEventListener("load", loadData);
-
-if (document.getElementsByClassName('main')[0].childNodes.length = 0) {
+if (document.body.getElementsByClassName('post').length = 0) {
   document.getElementById("newPost").style.display = "inline";
 } else {
   window.onscroll = function (ev) {

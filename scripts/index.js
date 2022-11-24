@@ -74,11 +74,11 @@ function writeToCard(cardId, i) {
         if (recentComment.text == "") {
           recentComment.text = "GIF";
         }
-      }
-      let text = document.createTextNode(recentComment.text);
-      console.log(text);
+        let text = document.createTextNode(recentComment.text);
+        console.log(text);
 
-      comment.appendChild(text);
+        comment.appendChild(text);
+      }
       post.getElementsByClassName("comments")[0].appendChild(comment);
 
       post
@@ -103,7 +103,6 @@ function createCard(id) {
 }
 
 function emojiCount(cardId) {
-
   const post = document.getElementById(cardId);
   const emojis = post.getElementsByClassName("emoji");
 
@@ -139,7 +138,6 @@ function emojiCount(cardId) {
         emojiSet(cardId, "surprise");
       }
     });
-
   }
 }
 
@@ -179,16 +177,10 @@ function emojiSet(cardId, emoji, set) {
 
 window.addEventListener("load", loadData);
 
-
-
-
 window.onscroll = function (ev) {
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-    document.getElementById('newPost').style.display = 'none'
-  }
-  else {
-    document.getElementById('newPost').style.display = 'inline'
-
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+    document.getElementById("newPost").style.display = "none";
+  } else {
+    document.getElementById("newPost").style.display = "inline";
   }
 };
-

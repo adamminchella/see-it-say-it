@@ -1,7 +1,3 @@
-const landingScript = require("./landing")
-const postScript = require("./post")
-const createScript = require("./create_page")
-
 // Loads all posts
 async function loadData() {
   await fetch("http://localhost:3000/api/posts")
@@ -13,7 +9,7 @@ async function loadData() {
     })
     .then((Data) => {
       let numPosts = Data.length;
-      for (let i = 0; i < numPosts; i++) {
+      for (let i = numPosts - 1; i >= 0; i--) {
         createCard(Data[i].postId, i);
         writeToCard(Data[i].postId, i);
         emojiCount(Data[i].postId);
@@ -39,9 +35,14 @@ function writeToCard(cardId, i) {
     })
     .then((Data) => {
       let postData = Data[i];
+      console.log(postData);
       let post = document.getElementById(cardId);
       post.getElementsByClassName("postTitle")[0].textContent = postData.title;
-      post.getElementsByClassName("postDate")[0].textContent = postData.date;
+      post.getElementsByClassName("postDate")[0].textContent = new Date(
+        postData.date
+      )
+        .toString()
+        .slice(0, 24);
       post.getElementsByClassName("postLocation")[0].textContent =
         postData.location.postcode;
 
@@ -68,12 +69,14 @@ function writeToCard(cardId, i) {
       let numComments = postData.comments.length;
       let comment = document.createElement("p");
       comment.className = "comment";
-
-      recentComment = postData.comments[numComments - 1].text;
-      if (recentComment == undefined) {
-        recentComment = "GIF";
+      recentComment = postData.comments[numComments - 1];
+      if (recentComment) {
+        if (recentComment.text == "") {
+          recentComment.text = "GIF";
+        }
       }
-      let text = document.createTextNode(recentComment);
+      let text = document.createTextNode(recentComment.text);
+      console.log(text);
 
       comment.appendChild(text);
       post.getElementsByClassName("comments")[0].appendChild(comment);
@@ -100,61 +103,54 @@ function createCard(id) {
 }
 
 function emojiCount(cardId) {
+
+
   const post = document.getElementById(cardId);
   const emojis = post.getElementsByClassName("emoji");
-  const url = `http://localhost:3000/api/posts/${post.id}/emojis`;
 
-  let emojiSelected = false;
-  let emojiParam = localStorage.getItem(cardId);
-
-  if (emojiParam) {
-    emojiSelected = true;
-  }
+  emojiSet(cardId, "like", true);
+  let emojiParam = JSON.parse(localStorage.getItem(cardId));
 
   for (const emoji of emojis) {
     let classChange = emoji.childNodes[0].className.replace("x bx-", "x bxs-");
-    if (emoji.classList.contains(`${emojiParam}`)) {
-      emoji.childNodes[0].className = classChange;
-    } else if (
-      emoji.classList.contains("surprise") &&
-      emojiParam == "shocked"
-    ) {
+
+    if (emojiParam[emoji.classList[2]]) {
       emoji.childNodes[0].className = classChange;
     }
 
+
     emoji.addEventListener("click", () => {
-      if (emoji.classList.contains("like") && emojiSelected == false) {
+      emojiParam = JSON.parse(localStorage.getItem(cardId));
+      if (emoji.classList.contains("like") && emojiParam["like"] == false) {
         emojiUpdate(cardId, "like");
         emoji.childNodes[0].className = classChange;
-        emojiSelected = true;
+        emojiSet(cardId, "like");
       } else if (
         emoji.classList.contains("dislike") &&
-        emojiSelected == false
+        emojiParam["dislike"] == false
       ) {
         emojiUpdate(cardId, "dislike");
         emoji.childNodes[0].className = classChange;
-        emojiSelected = true;
+        emojiSet(cardId, "dislike");
       } else if (
         emoji.classList.contains("surprise") &&
-        emojiSelected == false
+        emojiParam["surprise"] == false
       ) {
         emojiUpdate(cardId, "surprise");
         emoji.childNodes[0].className = classChange;
-        emojiSelected = true;
+        emojiSet(cardId, "surprise");
       }
     });
+
+
   }
 }
 
 function emojiUpdate(cardId, emoji) {
   const post = document.getElementById(cardId);
-  const icon = post.getElementsByClassName(emoji)[0];
+
   const count = post.getElementsByClassName(`${emoji}Count`)[0];
 
-<<<<<<< HEAD:scripts/index.js
-
-=======
-  // const classChange = icon.childNodes[0].className.replace('x bx-', 'x bxs-');
 
   fetch(`http://localhost:3000/api/posts/${post.id}/emojis`, {
     method: "PUT",
@@ -166,10 +162,37 @@ function emojiUpdate(cardId, emoji) {
     .then((res) => res.json())
     .then((data) => {
       count.textContent = data.emojis[emoji];
-      //   icon.className = classChange;
-      localStorage.setItem(cardId, emoji);
     });
+
 }
 
-window.addEventListener("load", loadData);
->>>>>>> 072bfd6532149dd04799617abe1caef387623c08:scripts/home.js
+function emojiSet(cardId, emoji, set) {
+  let emojiToggles = {
+    like: false,
+    dislike: false,
+
+    surprise: false,
+  };
+  let emojis = JSON.parse(localStorage.getItem(cardId));
+  if (!emojis) {
+    localStorage.setItem(cardId, JSON.stringify(emojiToggles));
+  } else if (!set) {
+    emojis[emoji] = true;
+    localStorage.setItem(cardId, JSON.stringify(emojis));
+
+  }
+}
+
+
+window.addEventListener('load', loadData);
+
+
+window.onscroll = function (ev) {
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    document.getElementById('newPost').style.display = 'none'
+  }
+  else {
+    document.getElementById('newPost').style.display = 'inline'
+  }
+};
+

@@ -18,14 +18,9 @@ const commentInputButton = document.querySelector(".comment-button");
 const commentInputField = document.querySelector("#comment-input-field");
 const exitButton = document.querySelector(".exit-gif-search");
 
-
-
-
 const blurBackground = document.querySelector(".blur");
 
 const postId = window.location.href.split("=")[1];
-
-
 
 async function fetchData(postId) {
   const url = `http://localhost:3000/api/posts/${postId}`;
@@ -35,7 +30,7 @@ async function fetchData(postId) {
     .then((data) => {
       postData = data;
     });
-
+  console.log(postData);
   return postData;
 }
 
@@ -55,6 +50,7 @@ function displayComments(commentData) {
   if (commentData.length === 0) {
     commentsHeader.textContent = "Be the first to comment!";
   } else {
+    commentsHeader.textContent = "Comments";
     commentData.forEach((comment, index) => {
       const commentCard = document.createElement("div");
       commentCard.classList.add("comment-card");
@@ -69,10 +65,7 @@ function displayComments(commentData) {
 
       const commentGif = document.createElement("img");
       if (comment.gif != "gif url...") {
-
-
         // console.log(commentGif);
-
 
         commentGif.src = comment.gif;
       } else {
@@ -86,10 +79,7 @@ function displayComments(commentData) {
       const commentDate = document.createElement("p");
       commentDate.classList.add("comment-date");
 
-
       commentDate.textContent = new Date(comment.date).toString().slice(0, 21);
-
-
 
       commentCard.appendChild(commentId);
 
@@ -106,68 +96,99 @@ function displayComments(commentData) {
 async function displayPostData() {
   const postData = await fetchData(postId);
   const commentData = postData.comments;
+  const labelData = postData.labels;
   console.log(commentData);
   displayTitleData(postData);
+  displayEmojis();
+  displayLabels(labelData);
   displayComments(commentData);
 }
 
-emojis.forEach((emoji) => {
-  emoji.addEventListener("click", () => {
-    const emojiType = emoji.children[1].classList.value;
-    const url = `http://localhost:3000/api/posts/${postId}/emojis`;
-    if (emojiType == "likes") {
-      fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ emoji: "like" }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          likes.textContent = data.emojis.like;
-        });
-    } else if (emojiType == "dislikes") {
-      fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ emoji: "dislike" }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          dislikes.textContent = data.emojis.dislike;
-        });
-    } else if (emojiType == "surprises") {
-      fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ emoji: "surprise" }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          surprises.textContent = data.emojis.surprise;
-        });
+function displayLabels(labelData) {
+  const labelsContainer = document.querySelector(".labels-container");
+  if (labelData.length > 0) {
+    labelData.forEach((label) => {
+      const labelDiv = document.createElement("div");
+      labelDiv.textContent = label;
+      labelsContainer.appendChild(labelDiv);
+    });
+  }
+  console.log(labelData);
+}
+
+function displayEmojis() {
+  let isEmojiSelected = false;
+  emojis.forEach((emoji) => {
+    let selectedEmoji = localStorage.getItem(postId);
+    if (selectedEmoji) {
+      isEmojiSelected = true;
     }
+    let classChange = emoji.children[0].className.replace("x bx-", "x bxs-");
+    if (emoji.classList.contains(`${selectedEmoji}`)) {
+      emoji.children[0].className = classChange;
+    } else if (
+      emoji.classList.contains("surprise") &&
+      selectedEmoji == "shocked"
+    ) {
+      emoji.childNodes[0].className = classChange;
+    }
+    emoji.addEventListener("click", () => {
+      // const emojiType = emoji.children[1].classList.value;
+      const url = `http://localhost:3000/api/posts/${postId}/emojis`;
+      if (emoji.classList.contains("like") && !isEmojiSelected) {
+        fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ emoji: "like" }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            likes.textContent = data.emojis.like;
+            emoji.children[0].className = classChange;
+            localStorage.setItem(postId, "like");
+          });
+        isEmojiSelected = true;
+      } else if (emoji.classList.contains("dislike") && !isEmojiSelected) {
+        fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ emoji: "dislike" }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            dislikes.textContent = data.emojis.dislike;
+            emoji.children[0].className = classChange;
+            localStorage.setItem(postId, "dislike");
+          });
+        isEmojiSelected = true;
+      } else if (emoji.classList.contains("surprise") && !isEmojiSelected) {
+        fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ emoji: "surprise" }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            surprises.textContent = data.emojis.surprise;
+            emoji.children[0].className = classChange;
+            localStorage.setItem(postId, "surprise");
+          });
+        isEmojiSelected = true;
+      }
+    });
   });
-});
-
-
-
+}
 
 commentInputField.addEventListener("click", () => {
-
-
-
   gifIconContainer.classList.remove("hidden");
   commentInputButton.classList.remove("hidden");
 });
-
-
-
 
 // commentInputField.addEventListener("input", () => {
 //   if (
@@ -180,32 +201,23 @@ commentInputField.addEventListener("click", () => {
 //   }
 // });
 
-
 document.addEventListener("click", (e) => {
-  console.log(e.target);
   if (
-    !e.target.classList.contains("gif-icon") &&
-    !e.target.classList.contains("comment-button") &&
     e.target.id != "comment-input-field" &&
     commentInputField.value == "" &&
+    !e.target.classList.contains("gif-icon") &&
+    !e.target.classList.contains("comment-button") &&
     !e.target.classList.contains("exit-gif-search") &&
-
     !e.target.classList.contains("close-icon") &&
-
-
     !e.target.classList.contains("gif-search-input-field") &&
     !e.target.classList.contains("gif-search-button") &&
     !e.target.classList.contains("search-icon") &&
     !e.target.classList.contains("gifImg") &&
-
-
-
     !e.target.classList.contains("blur") &&
     !e.target.classList.contains("selected-gif-container") &&
     !e.target.classList.contains("gif-container") &&
-    !e.target.classList.contains("gif-search-container")
-
-
+    !e.target.classList.contains("gif-search-container") &&
+    !e.target.classList.contains("gif-img-delete-button")
   ) {
     if (!gifIconContainer.classList.contains("hidden")) {
       gifIconContainer.classList.add("hidden");
@@ -221,14 +233,10 @@ commentInputButton.addEventListener("click", () => {
     ".selected-gif-container"
   );
 
-
-
   if (
     commentInputField.value === "" &&
     selectedGifContainer.children.length == 0
   ) {
-
-
     return;
   } else {
     let gifUrl;
@@ -250,10 +258,7 @@ commentInputButton.addEventListener("click", () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        const gifImg = document.querySelector(".gifImg");
-        if (gifImg) {
-          gifImg.remove();
-        }
+        selectedGifContainer.replaceChildren();
         const commentData = data.comments;
         console.log(commentData);
         displayComments(commentData);
@@ -270,32 +275,27 @@ gifIconContainer.addEventListener("click", () => {
   const selectedGifContainer = document.querySelector(
     ".selected-gif-container"
   );
-
-
   if (selectedGifContainer.children.length > 0) {
     return;
   }
   const gifSearchContainer = document.querySelector(".gif-search-container");
-
-
   blurBackground.classList.remove("hidden");
-
-
   gifSearchContainer.classList.remove("hidden");
 });
 
 gifSearchButton.addEventListener("click", () => {
   const gifContainer = document.querySelector(".gif-container");
-
   const gifSearchInput = document.querySelector(".gif-search-input-field");
-  const url = `http://api.giphy.com/v1/gifs/search?q=${gifSearchInput.value}&api_key=LdS1Lnx8uwLjE30dp797RTX5JA9L7YxD`;
+  const url = `https://api.giphy.com/v1/gifs/search?q=${gifSearchInput.value}&api_key=LdS1Lnx8uwLjE30dp797RTX5JA9L7YxD`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-
       data.data.forEach((element) => {
         const src = element.images.fixed_height_small.url;
         const gif = document.createElement("img");
+        const gifDeleteButton = document.createElement("img");
+        gifDeleteButton.classList.add("gif-img-delete-button");
+        gifDeleteButton.setAttribute("src", "../assets/images/close-icon.png");
         gif.classList.add("gifImg");
         gif.setAttribute("src", src);
         gifContainer.appendChild(gif);
@@ -306,16 +306,19 @@ gifSearchButton.addEventListener("click", () => {
           const selectedGifContainer = document.querySelector(
             ".selected-gif-container"
           );
+          gif.style.cursor = "default";
+
+          gifDeleteButton.addEventListener("click", () => {
+            selectedGifContainer.replaceChildren();
+          });
+
           selectedGifContainer.appendChild(gif);
+          selectedGifContainer.appendChild(gifDeleteButton);
           gifSearchContainer.classList.add("hidden");
-
-
 
           blurBackground.classList.add("hidden");
           gifSearchInput.value = "";
           gifContainer.replaceChildren();
-
-
         });
       });
     });
@@ -324,12 +327,7 @@ gifSearchButton.addEventListener("click", () => {
 exitButton.addEventListener("click", () => {
   const gifSearchContainer = document.querySelector(".gif-search-container");
   gifSearchContainer.classList.add("hidden");
-
-
-
   blurBackground.classList.add("hidden");
-
-
 });
 
 const tx = document.getElementsByTagName("textarea");
@@ -345,7 +343,6 @@ function OnInput() {
   this.style.height = 0;
   this.style.height = this.scrollHeight + "px";
 }
-
 
 window.addEventListener("load", displayPostData);
 

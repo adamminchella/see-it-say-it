@@ -1,3 +1,7 @@
+const landingScript = require("./landing")
+const postScript = require("./post")
+const createScript = require("./create_page")
+
 // Loads all posts
 async function loadData() {
     await fetch('http://localhost:3000/api/posts').then(r=> {
@@ -195,4 +199,5 @@ function emojiCount(cardId) {
 }
 
 window.addEventListener('load', loadData);
+
 

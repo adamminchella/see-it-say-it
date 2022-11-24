@@ -1,3 +1,5 @@
+function postScript () {
+
 const title = document.querySelector(".title");
 const description = document.querySelector(".description");
 const likes = document.querySelector(".likes");
@@ -346,3 +348,7 @@ function OnInput() {
 
 
 window.addEventListener("load", displayPostData);
+
+}
+
+module.exports = postScript;

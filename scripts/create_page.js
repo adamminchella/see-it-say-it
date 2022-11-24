@@ -1,3 +1,5 @@
+function createScript() {
+
 const button = document.getElementsByClassName("button");
 const form = document.querySelector("form");
 
@@ -69,6 +71,9 @@ form.addEventListener("submit", function(e) {
 
       .catch(error => console.log(error));
 });
+}
+
+module.exports = createScript;
 
 
 

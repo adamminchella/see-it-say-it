@@ -177,6 +177,7 @@ main {
 
 .comment-card {
   padding: 20px;
+  overflow-wrap: anywhere;
 }
 
 .comment-card-border {

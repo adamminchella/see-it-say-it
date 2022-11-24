@@ -3,3 +3,5 @@ if (decodeURIComponent(document.cookie)) {
 } else {
     document.cookie = 'visited=true'
 }
+
+module.exports = landingScript;

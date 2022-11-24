@@ -1,128 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/create_post.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../assets/favicon/site.webmanifest">
-    <script src="../scripts/create_page.js" defer></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/create_post.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+    <script defer src="../scripts/create_page.js"></script>
     <title>Create Post</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="logo-container">
-            <img id="logo" src="../assets/images/logo.png" alt="logo">
+      <div class="logo-container">
+        <img id="logo" src="../assets/images/logo.png" alt="logo" />
+      </div>
+      <nav>
+        <div></div>
+        <div id="homeArrow">
+          <a href="home.html">
+            <div class="all-posts-nav">
+              <span class="icon"
+                ><i class="bx bx-left-arrow-alt bx-md"></i
+              ></span>
+              All posts
+            </div>
+          </a>
         </div>
-        <nav>
-          <div></div>
-          <div id="homeArrow">
-            <a href="home.html">
-              <div class="all-posts-nav">
-                <span class="icon"><i class='bx bx-left-arrow-alt bx-md'></i></span>
-                All posts
-              </div>
-            </a>
-          </div>
-        </nav>
-        <div>
-            <img id="skyline" src="../assets/images/skyline-edit.svg" alt="skyline of london">
-        </div>
-      </header>
-<main>
-    <form>
+      </nav>
+      <div>
+        <img
+          id="skyline"
+          src="../assets/images/skyline-edit.svg"
+          alt="skyline of london"
+        />
+      </div>
+    </header>
+    <main>
+      <form>
         <div id="formText">
-        <h2>Please fill in the form below to create a new blog post:</h2>
-        <section id="titleID" class="entry">
-            <label for="title"> 
-                <span>
-                    Please enter a <b>title</b> for your post: 
-                </span>
-                <span>
-                    <i>(Max 200 characters)</i>
-                </span> 
+          <h2>Please fill in the form below to create a new blog post:</h2>
+          <section id="titleID" class="entry">
+            <label for="title">
+              <span> Please enter a <b>title</b> for your post: </span>
+              <span>
+                <i>(Max 200 characters)</i>
+              </span>
             </label>
+
             <br class="break">
-            <input type="text" name="title" id="myTitle" maxlength="200">
+            <input type="text" name="title" id="myTitle" maxlength="200" required>
         </section>
         <section id="descriptionID" class="entry">
+
             <label for="description">
-                <span>
-                    Please enter additional <b>description</b> and details about your post:
-                </span> 
-                <span>
-                    <i>(Max 500 characters)</i>
-                </span>
+              <span>
+                Please enter additional <b>description</b> and details about
+                your post:
+              </span>
+              <span>
+                <i>(Max 500 characters)</i>
+              </span>
             </label>
+
             <br class="break">
-            <input type="text" name="description" id="myDescription" maxlength="200">
+            <input type="text" name="description" id="myDescription" maxlength="200" required>
         </section>
         <section id="locationID" class="entry">
             <label for="location">Please enter the <b>postcode</b> of your post:</label>
             <br class="break">
-        <input type="text" name="location" id="myLocation" maxlength="8">
+        <input type="text" name="location" id="myLocation" maxlength="4" required>
         </section>
         <br class="break">
         <section id="labelSection">
             <label for="labelInput">Please add up to 3 <b>labels:</b></label>
             <div id="labels">
-                <button value="food" class="button">
-                    <img src="../assets/images/Images_create_post/Food-drink.png" alt="">
-                Food and Drink</button>
-                <button value="travel" class="button">
-                    <img src="../assets/images/Images_create_post/travel.png" alt="">
-                Travel</button>
-                <button value="night" class="button">
-                    <img src="../assets/images/Images_create_post/nightlife.png" alt="">
-                Nightlife</button>
-                <button value="safety" class="button">
-                    <img src="../assets/images/Images_create_post/saftey.png" alt="">
-                Safety</button>
-                <button value="stay" class="button">
-                    <img src="../assets/images/Images_create_post/stay.png" alt="">
-                Places to Stay</button>
-                 <button value="outdoors" class="button">
-                    <img src="../assets/images/Images_create_post/outdoors_new.png" alt="">
-                Outdoors</button>
-                <button value="shopping" class="button">
-                    <img src="../assets/images/Images_create_post/shopping.png" alt="">
-                Shopping</button>
-                <button value="attractions" class="button">
-                    <img src="../assets/images/Images_create_post/attractions.png" alt="">
-                Attractions</button>
-                <button value="wellness" class="button">
-                    <img src="../assets/images/Images_create_post/wellness.png" alt="">
-                Wellness</button>
-                <button value="fitness" class="button">
-                    <img src="../assets/images/Images_create_post/fitness.png" alt="">
-                Fitness</button>
-                <button value="Fun" class="button">
-                    <img src="../assets/images/Images_create_post/fun.png" alt="">
-                Fun</button>
-                <button value="christmas" class="button">
-                    <img src="../assets/images/Images_create_post/christmas.png" alt="">
-                Christmas</button>
+              <button value="food" class="button">
+                <img
+                  src="../assets/images/Images_create_post/Food-drink.png"
+                  alt=""
+                />
+                Food and Drink
+              </button>
+              <button value="travel" class="button">
+                <img
+                  src="../assets/images/Images_create_post/travel.png"
+                  alt=""
+                />
+                Travel
+              </button>
+              <button value="night" class="button">
+                <img
+                  src="../assets/images/Images_create_post/nightlife.png"
+                  alt=""
+                />
+                Nightlife
+              </button>
+              <button value="safety" class="button">
+                <img
+                  src="../assets/images/Images_create_post/saftey.png"
+                  alt=""
+                />
+                Safety
+              </button>
+              <button value="stay" class="button">
+                <img
+                  src="../assets/images/Images_create_post/stay.png"
+                  alt=""
+                />
+                Places to Stay
+              </button>
+              <button value="outdoors" class="button">
+                <img
+                  src="../assets/images/Images_create_post/outdoors_new.png"
+                  alt=""
+                />
+                Outdoors
+              </button>
+              <button value="shopping" class="button">
+                <img
+                  src="../assets/images/Images_create_post/shopping.png"
+                  alt=""
+                />
+                Shopping
+              </button>
+              <button value="attractions" class="button">
+                <img
+                  src="../assets/images/Images_create_post/attractions.png"
+                  alt=""
+                />
+                Attractions
+              </button>
+              <button value="wellness" class="button">
+                <img
+                  src="../assets/images/Images_create_post/wellness.png"
+                  alt=""
+                />
+                Wellness
+              </button>
+              <button value="fitness" class="button">
+                <img
+                  src="../assets/images/Images_create_post/fitness.png"
+                  alt=""
+                />
+                Fitness
+              </button>
+              <button value="Fun" class="button">
+                <img src="../assets/images/Images_create_post/fun.png" alt="" />
+                Fun
+              </button>
+              <button value="christmas" class="button">
+                <img
+                  src="../assets/images/Images_create_post/christmas.png"
+                  alt=""
+                />
+                Christmas
+              </button>
             </div>
-        </section>
-        <section id="submit">
-            <img src="../assets/images/Images_create_post/add.png" alt="">
-            <input type="submit" id="submitBtn">
-        </section>
+          </section>
+          <section id="submit">
+            <img src="../assets/images/Images_create_post/add.png" alt="" />
+            <input type="submit" id="submitBtn" />
+          </section>
         </div>
-    </form>
-</main>
-<footer>
-    @Copyright Duck & Divers 2022
-</footer>
-
-</body>
-
-
+      </form>
+    </main>
+    <footer>@Copyright Duck & Divers 2022</footer>
+  </body>
 </html>
-
-

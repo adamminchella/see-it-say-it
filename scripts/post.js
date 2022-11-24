@@ -18,10 +18,12 @@ const exitButton = document.querySelector(".exit-gif-search");
 
 const blurBackground = document.querySelector(".blur");
 
+const tx = document.querySelector("textarea");
+
 const postId = window.location.href.split("=")[1];
 
 async function fetchData(postId) {
-  const url = `http://localhost:3000/api/posts/${postId}`;
+  const url = `https://see-it-say-it-api.herokuapp.com/api/posts/${postId}`;
   let postData;
   await fetch(url)
     .then((res) => res.json())
@@ -95,7 +97,6 @@ async function displayPostData() {
   const postData = await fetchData(postId);
   const commentData = postData.comments;
   const labelData = postData.labels;
-  console.log(commentData);
   displayTitleData(postData);
   displayEmojis();
   displayLabels(labelData);
@@ -111,29 +112,24 @@ function displayLabels(labelData) {
       labelsContainer.appendChild(labelDiv);
     });
   }
-  console.log(labelData);
 }
 
 function displayEmojis() {
-  let isEmojiSelected = false;
+  emojiSet(postId, "like", true);
+  let emojiParam = JSON.parse(localStorage.getItem(postId));
   emojis.forEach((emoji) => {
-    let selectedEmoji = localStorage.getItem(postId);
-    if (selectedEmoji) {
-      isEmojiSelected = true;
-    }
+    console.log(emojiParam);
     let classChange = emoji.children[0].className.replace("x bx-", "x bxs-");
-    if (emoji.classList.contains(`${selectedEmoji}`)) {
+    console.log(emoji.children[0]);
+    if (emojiParam[emoji.classList[1]]) {
       emoji.children[0].className = classChange;
-    } else if (
-      emoji.classList.contains("surprise") &&
-      selectedEmoji == "shocked"
-    ) {
-      emoji.childNodes[0].className = classChange;
     }
     emoji.addEventListener("click", () => {
-      // const emojiType = emoji.children[1].classList.value;
-      const url = `http://localhost:3000/api/posts/${postId}/emojis`;
-      if (emoji.classList.contains("like") && !isEmojiSelected) {
+      emojiParam = JSON.parse(localStorage.getItem(postId));
+      console.log(emojiParam);
+      const url = `https://see-it-say-it-api.herokuapp.com/api/posts/${postId}/emojis`;
+
+      if (emoji.classList.contains("like") && emojiParam["like"] == false) {
         fetch(url, {
           method: "PUT",
           headers: {
@@ -144,11 +140,13 @@ function displayEmojis() {
           .then((res) => res.json())
           .then((data) => {
             likes.textContent = data.emojis.like;
-            emoji.children[0].className = classChange;
-            localStorage.setItem(postId, "like");
           });
-        isEmojiSelected = true;
-      } else if (emoji.classList.contains("dislike") && !isEmojiSelected) {
+        emoji.children[0].className = classChange;
+        emojiSet(postId, "like");
+      } else if (
+        emoji.classList.contains("dislike") &&
+        emojiParam["dislike"] == false
+      ) {
         fetch(url, {
           method: "PUT",
           headers: {
@@ -159,11 +157,14 @@ function displayEmojis() {
           .then((res) => res.json())
           .then((data) => {
             dislikes.textContent = data.emojis.dislike;
-            emoji.children[0].className = classChange;
-            localStorage.setItem(postId, "dislike");
           });
-        isEmojiSelected = true;
-      } else if (emoji.classList.contains("surprise") && !isEmojiSelected) {
+
+        emoji.children[0].className = classChange;
+        emojiSet(postId, "dislike");
+      } else if (
+        emoji.classList.contains("surprise") &&
+        emojiParam["surprise"] == false
+      ) {
         fetch(url, {
           method: "PUT",
           headers: {
@@ -174,13 +175,44 @@ function displayEmojis() {
           .then((res) => res.json())
           .then((data) => {
             surprises.textContent = data.emojis.surprise;
-            emoji.children[0].className = classChange;
-            localStorage.setItem(postId, "surprise");
           });
-        isEmojiSelected = true;
+        emoji.children[0].className = classChange;
+        emojiSet(postId, "surprise");
       }
     });
   });
+}
+
+function emojiUpdate(cardId, emoji) {
+  const post = document.getElementById(cardId);
+  const count = post.getElementsByClassName(`${emoji}Count`)[0];
+
+  fetch(`https://see-it-say-it-api.herokuapp.com/api/posts/${post.id}/emojis`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ emoji: emoji }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      count.textContent = data.emojis[emoji];
+    });
+}
+
+function emojiSet(postId, emoji, set) {
+  let emojiToggles = {
+    like: false,
+    dislike: false,
+    surprise: false,
+  };
+  let emojis = JSON.parse(localStorage.getItem(postId));
+  if (!emojis) {
+    localStorage.setItem(postId, JSON.stringify(emojiToggles));
+  } else if (!set) {
+    emojis[emoji] = true;
+    localStorage.setItem(postId, JSON.stringify(emojis));
+  }
 }
 
 commentInputField.addEventListener("click", () => {
@@ -243,7 +275,7 @@ commentInputButton.addEventListener("click", () => {
     } else {
       gifUrl = "gif url...";
     }
-    const url = `http://localhost:3000/api/posts/${postId}/comments`;
+    const url = `https://see-it-say-it-api.herokuapp.com/api/posts/${postId}/comments`;
     fetch(url, {
       method: "POST",
       headers: {
@@ -265,6 +297,7 @@ commentInputButton.addEventListener("click", () => {
   commentInputField.value = "";
   commentInputButton.classList.add("hidden");
   gifIconContainer.classList.add("hidden");
+  OnInput(tx);
 });
 
 const gifSearchButton = document.querySelector(".gif-search-button");
@@ -328,18 +361,18 @@ exitButton.addEventListener("click", () => {
   blurBackground.classList.add("hidden");
 });
 
-const tx = document.getElementsByTagName("textarea");
-for (let i = 0; i < tx.length; i++) {
-  tx[i].setAttribute(
-    "style",
-    "height:" + tx[i].scrollHeight + "px;overflow-y:hidden;"
-  );
-  tx[i].addEventListener("input", OnInput, false);
-}
+tx.setAttribute("style", "height:" + tx.scrollHeight + "px;overflow-y:hidden;");
+tx.addEventListener(
+  "input",
+  () => {
+    OnInput(tx);
+  },
+  false
+);
 
-function OnInput() {
-  this.style.height = 0;
-  this.style.height = this.scrollHeight + "px";
+function OnInput(tx) {
+  tx.style.height = 0;
+  tx.style.height = tx.scrollHeight + "px";
 }
 
 window.addEventListener("load", displayPostData);

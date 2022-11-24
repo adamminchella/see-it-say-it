@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/styles.css">
-    <script defer src="../scripts/home.js"></script>
+    <script defer src="../scripts/index.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
@@ -30,7 +30,7 @@
         <a id="newPost" href="create_post.html">
 
             <span class="icon"><i class='bx bx-plus bx-md'></i></span>
-            New Post
+            <span id="buttonText">New Post</span>
         </a>
 
         <h2>Recent Posts</h2>
@@ -63,10 +63,14 @@
             </div>
             
             <div class="postInfo">
-                <span class="icon"><i class='bx bx-calendar bx-sm'></i></span>
-                <span class="postDate">Date</span>
-                <span class="icon"><i class='bx bx-map bx-sm'></i></span>
-                <span class="postLocation">Location</span>
+                <div>
+                    <span class="icon"><i class='bx bx-calendar bx-sm'></i></span>
+                    <span class="postDate">Date</span>
+                </div>
+                <div>
+                    <span class="icon"><i class='bx bx-map bx-sm'></i></span>
+                    <span class="postLocation">Location</span>
+                </div>
             </div>
 
             <div>

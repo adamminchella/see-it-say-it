@@ -31,6 +31,10 @@
       href="../assets/favicon/favicon-16x16.png"
     />
     <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <script defer src="../scripts/create_page.js"></script>
     <title>Create Post</title>
   </head>
@@ -88,7 +92,7 @@
             </label>
 
             <br class="break">
-            <input type="text" name="description" id="myDescription" maxlength="200" required>
+            <textarea type="text" name="description" id="myDescription" maxlength="200" rows="4" cols="50" required></textarea>
         </section>
         <section id="locationID" class="entry">
             <label for="location">Please enter the <b>postcode</b> of your post:</label>

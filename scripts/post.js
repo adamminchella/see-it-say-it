@@ -355,6 +355,13 @@ gifSearchButton.addEventListener("click", () => {
     });
 });
 
+const gifSearchInputField = document.querySelector(".gif-search-input-field");
+gifSearchInputField.addEventListener("keypress", (e) => {
+  if (e.key == "Enter") {
+    gifSearchButton.click();
+  }
+});
+
 exitButton.addEventListener("click", () => {
   const gifSearchContainer = document.querySelector(".gif-search-container");
   gifSearchContainer.classList.add("hidden");

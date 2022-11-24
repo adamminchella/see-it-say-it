@@ -353,6 +353,7 @@ gifSearchButton.addEventListener("click", () => {
         });
       });
     });
+  gifContainer.replaceChildren();
 });
 
 const gifSearchInputField = document.querySelector(".gif-search-input-field");

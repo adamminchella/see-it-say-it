@@ -163,7 +163,6 @@ function emojiSet(cardId, emoji, set) {
   let emojiToggles = {
     like: false,
     dislike: false,
-
     surprise: false,
   };
   let emojis = JSON.parse(localStorage.getItem(cardId));

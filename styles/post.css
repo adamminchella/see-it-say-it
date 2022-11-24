@@ -169,7 +169,7 @@ main {
 }
 
 .comments-container {
-  margin-top: 20px;
+  margin-top: 5px;
   border: 1px solid transparent;
   border-radius: 10px;
   box-shadow: 0 0 5px rgb(119, 119, 119);
@@ -385,4 +385,17 @@ main {
 
 footer {
   margin: 20px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .header-and-labels-container {
+    flex-direction: column-reverse;
+    margin: 10px 0 0;
+  }
+
+  .comments-header {
+    align-self: start;
+    margin-top: 30px;
+    margin-bottom: 0;
+  }
 }

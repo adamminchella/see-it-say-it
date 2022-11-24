@@ -185,10 +185,15 @@ function emojiSet(cardId, emoji, set) {
 
 window.addEventListener("load", loadData);
 
-window.onscroll = function (ev) {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-    document.getElementById("newPost").style.display = "none";
-  } else {
-    document.getElementById("newPost").style.display = "inline";
-  }
-};
+if (document.getElementsByClassName('main')[0].childNodes.length = 0) {
+  document.getElementById("newPost").style.display = "inline";
+} else {
+  window.onscroll = function (ev) {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      document.getElementById("newPost").style.display = "none";
+    } else {
+      document.getElementById("newPost").style.display = "inline";
+    }
+  };
+}
+

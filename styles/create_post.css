@@ -22,6 +22,11 @@ body {
 textarea, input {
     border-width: 2px;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    font-family: Roboto, sans-serif;
+}
+
+button {
+    font-family: Roboto, sans-serif;
 }
   
 header {

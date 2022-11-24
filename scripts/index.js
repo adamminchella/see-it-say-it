@@ -1,11 +1,3 @@
-const landingScript = require('./landing')
-const postScript = require('./post')
-const createScript = require('./create_page')
-landingScript()
-// postScript()
-// createScript()
-
-
 // Loads all posts
 async function loadData() {
   await fetch("http://localhost:3000/api/posts")
@@ -197,11 +189,11 @@ function emojiSet(cardId, emoji, set) {
 window.addEventListener('load', loadData);
 
 
-window.onscroll = function(ev) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        document.getElementById('newPost').style.display = 'none'
-    }
-    else {
-        document.getElementById('newPost').style.display = 'inline'
-    }
+window.onscroll = function (ev) {
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    document.getElementById('newPost').style.display = 'none'
+  }
+  else {
+    document.getElementById('newPost').style.display = 'inline'
+  }
 };

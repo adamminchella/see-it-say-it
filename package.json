@@ -2,10 +2,8 @@
   "name": "see-it-say-it",
   "version": "1.0.0",
   "description": "A London based community journaling website",
-  "main": "./scripts/index.js",
   "scripts": {
-    "test": "jest",
-    "dev": "watchify ./ ./scripts/index.js -o bundle.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

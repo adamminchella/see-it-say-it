@@ -43,7 +43,7 @@ form.addEventListener("submit", function (e) {
   let dataToSend = {
     title: titleText,
     description: descriptionText,
-    location: locationText,
+    location: { postcode: locationText },
     labels: labels,
   };
 

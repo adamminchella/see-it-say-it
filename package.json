@@ -18,12 +18,12 @@
     "url": "https://github.com/adamminchella/see-it-say-it/issues"
   },
   "homepage": "https://github.com/adamminchella/see-it-say-it#readme",
-  "dependencies": {
-    "watchify": "^4.0.0"
-  },
   "devDependencies": {
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "jsdom": "^20.0.3"
+  },
+  "dependencies": {
+    "watchify": "^4.0.0"
   }
 }

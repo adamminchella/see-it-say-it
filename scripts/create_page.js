@@ -39,15 +39,13 @@ const createScript = () => {
 
     let titleText = document.getElementById("myTitle").value;
     let descriptionText = document.getElementById("myDescription").value;
-    let locationText = document.getElementById("myLocation").value;
-
+    let locationText = document.getElementById("myLocation").value; 
     let dataToSend = {
-      title: titleText,
-      description: descriptionText,
-      location: locationText,
-      labels: labels,
-    };
-
+    title: titleText,
+    description: descriptionText,
+    location: { postcode: locationText },
+    labels: labels,
+  };
     console.log(dataToSend);
 
     fetch("http://localhost:3000/api/posts", {

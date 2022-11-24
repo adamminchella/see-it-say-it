@@ -388,6 +388,26 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 0;
+  }
+
+  .title {
+    margin: 0;
+  }
+
+  .description {
+    margin-top: 5px;
+  }
+
+  .emojis {
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
   .header-and-labels-container {
     flex-direction: column-reverse;
     margin: 10px 0 0;

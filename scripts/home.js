@@ -76,7 +76,8 @@ function writeToCard(cardId, i) {
           recentComment.text = "GIF";
         }
       }
-      let text = document.createTextNode(recentComment);
+      let text = document.createTextNode(recentComment.text);
+      console.log(text);
 
       comment.appendChild(text);
       post.getElementsByClassName("comments")[0].appendChild(comment);

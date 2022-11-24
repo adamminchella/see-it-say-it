@@ -131,7 +131,7 @@ main {
     vertical-align: middle;
 }
 
-.icon:hover {
+.emoji:hover {
     cursor: pointer; 
 }
 
@@ -142,7 +142,7 @@ main {
 .labels li {
     text-align: center;
     display: inline-block;
-    padding: 5px;
+    padding: 7px;
     margin-right: 5px;
     color: var(--light);
     background-color: var(--tertiary);
@@ -161,7 +161,7 @@ main {
     color: var(--secondary);
     
     padding-bottom: 8px;
-    padding-left: 10px;
+    padding-left: 25px;
 }
 
 @media screen and (max-width: 800px) {

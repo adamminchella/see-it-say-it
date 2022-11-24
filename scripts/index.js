@@ -35,7 +35,6 @@ function writeToCard(cardId, i) {
     })
     .then((Data) => {
       let postData = Data[i];
-      console.log(postData);
       let post = document.getElementById(cardId);
       post.getElementsByClassName("postTitle")[0].textContent = postData.title;
       post.getElementsByClassName("postDate")[0].textContent = new Date(
@@ -67,17 +66,26 @@ function writeToCard(cardId, i) {
       }
 
       let numComments = postData.comments.length;
-      let comment = document.createElement("p");
+      let comment = document.createElement("div");
+      let commentText = document.createElement('p');
+      let commentTime = document.createElement('p')
+      let gif = document.createElement('img');
       comment.className = "comment";
       recentComment = postData.comments[numComments - 1];
       if (recentComment) {
-        if (recentComment.text == "") {
-          recentComment.text = "GIF";
-        }
+        let time = document.createTextNode(new Date(recentComment.date).toString().slice(0, 21));
+        commentTime.appendChild(time)
         let text = document.createTextNode(recentComment.text);
-        console.log(text);
-
-        comment.appendChild(text);
+        commentText.appendChild(text);
+        if (recentComment.gif == "gif url...") {
+          gif.style.display = 'none';
+        } else {
+          gif.setAttribute('src', recentComment.gif);
+        }
+        comment.appendChild(commentTime)
+        comment.appendChild(commentText);
+        comment.appendChild(gif);
+        
       }
       post.getElementsByClassName("comments")[0].appendChild(comment);
 

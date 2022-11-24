@@ -1,10 +1,9 @@
 const landingScript = require('./landing')
 const postScript = require('./post')
 const createScript = require('./create_page')
-
 landingScript()
-postScript()
-createScript()
+// postScript()
+// createScript()
 
 // Loads all posts
 async function loadData() {

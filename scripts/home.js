@@ -38,7 +38,11 @@ function writeToCard(cardId, i) {
       console.log(postData);
       let post = document.getElementById(cardId);
       post.getElementsByClassName("postTitle")[0].textContent = postData.title;
-      post.getElementsByClassName("postDate")[0].textContent = postData.date;
+      post.getElementsByClassName("postDate")[0].textContent = new Date(
+        postData.date
+      )
+        .toString()
+        .slice(0, 24);
       post.getElementsByClassName("postLocation")[0].textContent =
         postData.location.postcode;
 

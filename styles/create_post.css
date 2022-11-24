@@ -10,12 +10,18 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
+    background-color: var(--light);
 }
 
 #logo {
     height: 100px;
     width: auto;
     margin: auto;
+}
+
+textarea, input {
+    border-width: 2px;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
 }
   
 header {
@@ -79,7 +85,6 @@ main {
     justify-content: center;
     margin: 50px;
     border-radius: 30px;
-    border: solid 10px white;
     background-image: url("../assets/images/Images_create_post/london_eye_2.jpg");
     padding: 20px;
 }
@@ -97,12 +102,13 @@ form {
     background-color: white;
 }
 
-form input {
+form input, textarea {
     border-radius: 10px;
     width: 500px;
+    resize: none;
 }
 
-.entry input {
+.entry input, textarea {
     margin-bottom: 25px;
     margin-top: 20px;
 }
@@ -113,12 +119,6 @@ form #titleID input {
 
 form #locationID input {
     height: 50px;
-}
-
-form #descriptionID input {
-    height: 100px;
-    width: 500px;
-
 }
 
 form #labels {
@@ -134,17 +134,18 @@ form button {
     border: 0px;
     background-color: var(--tertiary);
     margin: 10px;
-    opacity: 70%;
+    /* opacity: 70%; */
     height: 40px;
     width: 150px;
     padding: 10px;
-    color: black;
+    color: white;
     font-weight: bold;
     text-align: center;
 }
 
 form button:hover {
-    background-color: rgb(54, 98, 121);
+    background-color: rgb(23, 56, 74);
+    cursor: pointer;
 }
 
 form button img {

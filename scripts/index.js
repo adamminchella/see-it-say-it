@@ -179,10 +179,15 @@ function emojiSet(cardId, emoji, set) {
 
 window.addEventListener("load", loadData);
 
+
+
+
 window.onscroll = function (ev) {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-    document.getElementById("newPost").style.display = "none";
-  } else {
-    document.getElementById("newPost").style.display = "inline";
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    document.getElementById('newPost').style.display = 'none'
+  }
+  else {
+    document.getElementById('newPost').style.display = 'inline'
+
   }
 };

@@ -7,7 +7,9 @@ async function loadData() {
       }
       return r.json();
     })
+
     .then((Data) => {
+
       let numPosts = Data.length;
       for (let i = numPosts - 1; i >= 0; i--) {
         createCard(Data[i].postId, i);
@@ -33,6 +35,7 @@ function writeToCard(cardId, i) {
       }
       return r.json();
     })
+
     .then((Data) => {
       let postData = Data[i];
       console.log(postData);
@@ -87,6 +90,7 @@ function writeToCard(cardId, i) {
         .addEventListener("click", () => {
           window.location.href = `./post.html?id=${post.id}`;
         });
+
     })
     .catch((error) => {
       console.error(
@@ -104,6 +108,7 @@ function createCard(id) {
 }
 
 function emojiCount(cardId) {
+
   const post = document.getElementById(cardId);
   const emojis = post.getElementsByClassName("emoji");
 
@@ -112,9 +117,11 @@ function emojiCount(cardId) {
 
   for (const emoji of emojis) {
     let classChange = emoji.childNodes[0].className.replace("x bx-", "x bxs-");
+
     if (emojiParam[emoji.classList[2]]) {
       emoji.childNodes[0].className = classChange;
     }
+
 
     emoji.addEventListener("click", () => {
       emojiParam = JSON.parse(localStorage.getItem(cardId));
@@ -138,12 +145,14 @@ function emojiCount(cardId) {
         emojiSet(cardId, "surprise");
       }
     });
+
   }
 }
 
 function emojiUpdate(cardId, emoji) {
   const post = document.getElementById(cardId);
   const count = post.getElementsByClassName(`${emoji}Count`)[0];
+
 
   fetch(`http://localhost:3000/api/posts/${post.id}/emojis`, {
     method: "PUT",
@@ -156,12 +165,14 @@ function emojiUpdate(cardId, emoji) {
     .then((data) => {
       count.textContent = data.emojis[emoji];
     });
+
 }
 
 function emojiSet(cardId, emoji, set) {
   let emojiToggles = {
     like: false,
     dislike: false,
+
     surprise: false,
   };
   let emojis = JSON.parse(localStorage.getItem(cardId));
@@ -170,17 +181,19 @@ function emojiSet(cardId, emoji, set) {
   } else if (!set) {
     emojis[emoji] = true;
     localStorage.setItem(cardId, JSON.stringify(emojis));
+
   }
 }
 
 
 window.addEventListener('load', loadData);
 
-window.onscroll = function(ev) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        document.getElementById('newPost').style.display = 'none'
-    }
-    else {
-        document.getElementById('newPost').style.display = 'inline'
-    }
+
+window.onscroll = function (ev) {
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    document.getElementById('newPost').style.display = 'none'
+  }
+  else {
+    document.getElementById('newPost').style.display = 'inline'
+  }
 };

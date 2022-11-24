@@ -18,6 +18,8 @@ const exitButton = document.querySelector(".exit-gif-search");
 
 const blurBackground = document.querySelector(".blur");
 
+const tx = document.querySelector("textarea");
+
 const postId = window.location.href.split("=")[1];
 
 async function fetchData(postId) {
@@ -295,6 +297,7 @@ commentInputButton.addEventListener("click", () => {
   commentInputField.value = "";
   commentInputButton.classList.add("hidden");
   gifIconContainer.classList.add("hidden");
+  OnInput(tx);
 });
 
 const gifSearchButton = document.querySelector(".gif-search-button");
@@ -358,18 +361,18 @@ exitButton.addEventListener("click", () => {
   blurBackground.classList.add("hidden");
 });
 
-const tx = document.getElementsByTagName("textarea");
-for (let i = 0; i < tx.length; i++) {
-  tx[i].setAttribute(
-    "style",
-    "height:" + tx[i].scrollHeight + "px;overflow-y:hidden;"
-  );
-  tx[i].addEventListener("input", OnInput, false);
-}
+tx.setAttribute("style", "height:" + tx.scrollHeight + "px;overflow-y:hidden;");
+tx.addEventListener(
+  "input",
+  () => {
+    OnInput(tx);
+  },
+  false
+);
 
-function OnInput() {
-  this.style.height = 0;
-  this.style.height = this.scrollHeight + "px";
+function OnInput(tx) {
+  tx.style.height = 0;
+  tx.style.height = tx.scrollHeight + "px";
 }
 
 window.addEventListener("load", displayPostData);

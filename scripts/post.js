@@ -23,7 +23,7 @@ const tx = document.querySelector("textarea");
 const postId = window.location.href.split("=")[1];
 
 async function fetchData(postId) {
-  const url = `http://localhost:3000/api/posts/${postId}`;
+  const url = `https://see-it-say-it-api.herokuapp.com/api/posts/${postId}`;
   let postData;
   await fetch(url)
     .then((res) => res.json())
@@ -127,7 +127,7 @@ function displayEmojis() {
     emoji.addEventListener("click", () => {
       emojiParam = JSON.parse(localStorage.getItem(postId));
       console.log(emojiParam);
-      const url = `http://localhost:3000/api/posts/${postId}/emojis`;
+      const url = `https://see-it-say-it-api.herokuapp.com/api/posts/${postId}/emojis`;
 
       if (emoji.classList.contains("like") && emojiParam["like"] == false) {
         fetch(url, {
@@ -187,7 +187,7 @@ function emojiUpdate(cardId, emoji) {
   const post = document.getElementById(cardId);
   const count = post.getElementsByClassName(`${emoji}Count`)[0];
 
-  fetch(`http://localhost:3000/api/posts/${post.id}/emojis`, {
+  fetch(`https://see-it-say-it-api.herokuapp.com/api/posts/${post.id}/emojis`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -275,7 +275,7 @@ commentInputButton.addEventListener("click", () => {
     } else {
       gifUrl = "gif url...";
     }
-    const url = `http://localhost:3000/api/posts/${postId}/comments`;
+    const url = `https://see-it-say-it-api.herokuapp.com/api/posts/${postId}/comments`;
     fetch(url, {
       method: "POST",
       headers: {
@@ -353,6 +353,13 @@ gifSearchButton.addEventListener("click", () => {
         });
       });
     });
+});
+
+const gifSearchInputField = document.querySelector(".gif-search-input-field");
+gifSearchInputField.addEventListener("keypress", (e) => {
+  if (e.key == "Enter") {
+    gifSearchButton.click();
+  }
 });
 
 exitButton.addEventListener("click", () => {

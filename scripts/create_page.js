@@ -1,3 +1,5 @@
+function createScript() {
+
 const button = document.getElementsByClassName("button");
 const form = document.querySelector("form");
 
@@ -23,6 +25,9 @@ Array.from(button).forEach((button) => {
     console.log(labels);
   });
 });
+}
+
+module.exports = createScript;
 
 function isButtonClicked(clickedButton) {
   for (let value of labels) {

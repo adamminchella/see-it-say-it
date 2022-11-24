@@ -7,7 +7,6 @@ async function loadData() {
       }
       return r.json();
     })
-
     .then((Data) => {
       let numPosts = Data.length;
       for (let i = numPosts - 1; i >= 0; i--) {
@@ -34,7 +33,6 @@ function writeToCard(cardId, i) {
       }
       return r.json();
     })
-
     .then((Data) => {
       let postData = Data[i];
       console.log(postData);
@@ -71,7 +69,6 @@ function writeToCard(cardId, i) {
       let numComments = postData.comments.length;
       let comment = document.createElement("p");
       comment.className = "comment";
-
       recentComment = postData.comments[numComments - 1];
       if (recentComment) {
         if (recentComment.text == "") {
@@ -106,6 +103,7 @@ function createCard(id) {
 }
 
 function emojiCount(cardId) {
+
   const post = document.getElementById(cardId);
   const emojis = post.getElementsByClassName("emoji");
 
@@ -141,11 +139,13 @@ function emojiCount(cardId) {
         emojiSet(cardId, "surprise");
       }
     });
+
   }
 }
 
 function emojiUpdate(cardId, emoji) {
   const post = document.getElementById(cardId);
+
   const count = post.getElementsByClassName(`${emoji}Count`)[0];
 
   fetch(`http://localhost:3000/api/posts/${post.id}/emojis`, {
@@ -191,3 +191,4 @@ window.onscroll = function (ev) {
 
   }
 };
+

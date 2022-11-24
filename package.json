@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "A London based community journaling website",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage",
   },
   "repository": {
     "type": "git",

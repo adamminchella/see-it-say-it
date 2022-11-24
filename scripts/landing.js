@@ -1,10 +1,7 @@
-function landingScript() {
-
-    if (decodeURIComponent(document.cookie)) {
-        window.location.href = 'html/home.html'
-    } else {
-        document.cookie = 'visited=true'
-    }
+if (decodeURIComponent(document.cookie)) {
+    window.location.href = 'html/home.html'
+} else {
+    document.cookie = 'visited=true'
 }
 
 module.exports = landingScript;

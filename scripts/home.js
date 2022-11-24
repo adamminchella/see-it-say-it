@@ -70,9 +70,11 @@ function writeToCard(cardId, i) {
       let comment = document.createElement("p");
       comment.className = "comment";
 
-      recentComment = postData.comments[numComments - 1].text;
-      if (recentComment == "") {
-        recentComment = "GIF";
+      recentComment = postData.comments[numComments - 1];
+      if (recentComment) {
+        if (recentComment.text == "") {
+          recentComment.text = "GIF";
+        }
       }
       let text = document.createTextNode(recentComment);
 

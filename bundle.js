@@ -72,10 +72,9 @@ module.exports = createScript
 const landingScript = require('./landing')
 const postScript = require('./post')
 const createScript = require('./create_page')
-
 landingScript()
-postScript()
-createScript()
+// postScript()
+// createScript()
 
 // Loads all posts
 async function loadData() {
@@ -257,10 +256,10 @@ window.addEventListener('load', loadData);
 
 },{"./create_page":1,"./landing":3,"./post":4}],3:[function(require,module,exports){
 const landingScript = () => {
-    if (decodeURIComponent(document.cookie)) {
+    if (decodeURIComponent(document.cookie) && ((window.location.href).includes('index') || !(window.location.href).includes('html'))) {
         window.location.href = 'html/home.html'
     } else {
-        document.cookie = 'visited=true'
+        if ((window.location.href).includes('index') || !(window.location.href).includes('html')) document.cookie = 'visited=true'
     }
 }
 

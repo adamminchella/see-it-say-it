@@ -18,10 +18,10 @@ describe('index.html', () => {
         expect(p.textContent).toMatch(/platform/)
     })
 
-    // test('button changes h2', () => {
-    //     const btn = document.querySelector('#updateTitle')
-    //     btn.dispatchEvent(new dom.window.Event('click'))
-    //     const h2 = document.querySelector('h2')
-    //     expect(h2.textContent).toContain('button clicked')
-    // })
+    test.skip('button changes h2', () => {
+        const btn = document.querySelector('#updateTitle')
+        btn.dispatchEvent(new dom.window.Event('click'))
+        const h2 = document.querySelector('h2')
+        expect(h2.textContent).toContain('button clicked')
+    })
 })

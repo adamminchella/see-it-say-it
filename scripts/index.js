@@ -7,9 +7,7 @@ async function loadData() {
       }
       return r.json();
     })
-
     .then((Data) => {
-
       let numPosts = Data.length;
       for (let i = numPosts - 1; i >= 0; i--) {
         createCard(Data[i].postId, i);
@@ -35,7 +33,6 @@ function writeToCard(cardId, i) {
       }
       return r.json();
     })
-
     .then((Data) => {
       let postData = Data[i];
       console.log(postData);
@@ -72,7 +69,6 @@ function writeToCard(cardId, i) {
       let numComments = postData.comments.length;
       let comment = document.createElement("p");
       comment.className = "comment";
-
       recentComment = postData.comments[numComments - 1];
       if (recentComment) {
         if (recentComment.text == "") {
@@ -90,7 +86,6 @@ function writeToCard(cardId, i) {
         .addEventListener("click", () => {
           window.location.href = `./post.html?id=${post.id}`;
         });
-
     })
     .catch((error) => {
       console.error(
@@ -122,7 +117,6 @@ function emojiCount(cardId) {
       emoji.childNodes[0].className = classChange;
     }
 
-
     emoji.addEventListener("click", () => {
       emojiParam = JSON.parse(localStorage.getItem(cardId));
       if (emoji.classList.contains("like") && emojiParam["like"] == false) {
@@ -151,8 +145,8 @@ function emojiCount(cardId) {
 
 function emojiUpdate(cardId, emoji) {
   const post = document.getElementById(cardId);
-  const count = post.getElementsByClassName(`${emoji}Count`)[0];
 
+  const count = post.getElementsByClassName(`${emoji}Count`)[0];
 
   fetch(`http://localhost:3000/api/posts/${post.id}/emojis`, {
     method: "PUT",
@@ -165,7 +159,6 @@ function emojiUpdate(cardId, emoji) {
     .then((data) => {
       count.textContent = data.emojis[emoji];
     });
-
 }
 
 function emojiSet(cardId, emoji, set) {
@@ -181,12 +174,12 @@ function emojiSet(cardId, emoji, set) {
   } else if (!set) {
     emojis[emoji] = true;
     localStorage.setItem(cardId, JSON.stringify(emojis));
-
   }
 }
 
+window.addEventListener("load", loadData);
 
-window.addEventListener('load', loadData);
+
 
 
 window.onscroll = function (ev) {
@@ -195,5 +188,7 @@ window.onscroll = function (ev) {
   }
   else {
     document.getElementById('newPost').style.display = 'inline'
+
   }
 };
+

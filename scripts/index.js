@@ -115,7 +115,7 @@ function emojiCount(cardId) {
   const emojis = post.getElementsByClassName("emoji");
 
   emojiSet(cardId, "like", true);
-  let emojiParam = JSON.parse(localStorage.getItem(cardId));
+  let emojiParam = JSON.parse(sessionStorage.getItem(cardId));
 
   for (const emoji of emojis) {
     let classChange = emoji.childNodes[0].className.replace("x bx-", "x bxs-");
@@ -125,7 +125,7 @@ function emojiCount(cardId) {
     }
 
     emoji.addEventListener("click", () => {
-      emojiParam = JSON.parse(localStorage.getItem(cardId));
+      emojiParam = JSON.parse(sessionStorage.getItem(cardId));
       if (emoji.classList.contains("like") && emojiParam["like"] == false) {
         emojiUpdate(cardId, "like");
         emoji.childNodes[0].className = classChange;
@@ -174,12 +174,12 @@ function emojiSet(cardId, emoji, set) {
 
     surprise: false,
   };
-  let emojis = JSON.parse(localStorage.getItem(cardId));
+  let emojis = JSON.parse(sessionStorage.getItem(cardId));
   if (!emojis) {
-    localStorage.setItem(cardId, JSON.stringify(emojiToggles));
+    sessionStorage.setItem(cardId, JSON.stringify(emojiToggles));
   } else if (!set) {
     emojis[emoji] = true;
-    localStorage.setItem(cardId, JSON.stringify(emojis));
+    sessionStorage.setItem(cardId, JSON.stringify(emojis));
   }
 }
 

@@ -116,7 +116,7 @@ function displayLabels(labelData) {
 
 function displayEmojis() {
   emojiSet(postId, "like", true);
-  let emojiParam = JSON.parse(localStorage.getItem(postId));
+  let emojiParam = JSON.parse(sessionStorage.getItem(postId));
   emojis.forEach((emoji) => {
     console.log(emojiParam);
     let classChange = emoji.children[0].className.replace("x bx-", "x bxs-");
@@ -125,7 +125,7 @@ function displayEmojis() {
       emoji.children[0].className = classChange;
     }
     emoji.addEventListener("click", () => {
-      emojiParam = JSON.parse(localStorage.getItem(postId));
+      emojiParam = JSON.parse(sessionStorage.getItem(postId));
       console.log(emojiParam);
       const url = `https://see-it-say-it-api.herokuapp.com/api/posts/${postId}/emojis`;
 
@@ -206,12 +206,12 @@ function emojiSet(postId, emoji, set) {
     dislike: false,
     surprise: false,
   };
-  let emojis = JSON.parse(localStorage.getItem(postId));
+  let emojis = JSON.parse(sessionStorage.getItem(postId));
   if (!emojis) {
-    localStorage.setItem(postId, JSON.stringify(emojiToggles));
+    sessionStorage.setItem(postId, JSON.stringify(emojiToggles));
   } else if (!set) {
     emojis[emoji] = true;
-    localStorage.setItem(postId, JSON.stringify(emojis));
+    sessionStorage.setItem(postId, JSON.stringify(emojis));
   }
 }
 

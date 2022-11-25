@@ -75,7 +75,7 @@ Our file structures were synced (finally). In future we would have an initial fi
 
 ### Wins
 
-We successfully met the project requirements for an MVP and produced a stylish final product on time. We ensured we stayed on focus and on task through regular communication. This was also helped by the initial planning stage, enabling us to define a solid foundation of an idea before we started any coding.
+We successfully met the project requirements for an MVP and produced a stylish final product on time. We ensured we stayed focused and on task through regular communication. This was also helped by the initial planning stage, enabling us to define a solid foundation of an idea before we started any coding.
 
 We also tested our main home page on Google's PageSpeed Insights and found excellent results for performance on load.
 

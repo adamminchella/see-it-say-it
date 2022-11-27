@@ -1,94 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/styles.css">
-    <script defer src="../scripts/index.js"></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../assets/favicon/site.webmanifest">
-    <title>See It, Say It</title>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../styles/styles.css" />
+		<script defer src="../scripts/index.js"></script>
+		<link
+			href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="../assets/favicon/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="../assets/favicon/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="../assets/favicon/favicon-16x16.png"
+		/>
+		<link rel="manifest" href="../assets/favicon/site.webmanifest" />
+		<title>See It, Say It</title>
+	</head>
+	<body>
+		<header>
+			<div class="logo-container">
+				<img id="logo" src="../assets/images/logo.png" alt="logo" />
+			</div>
+			<nav></nav>
+			<div>
+				<img
+					id="skyline"
+					src="../assets/images/skyline-edit.svg"
+					alt="skyline of london"
+				/>
+			</div>
+		</header>
 
-    <header>
-        <div class="logo-container">
-            <img id="logo" src="../assets/images/logo.png" alt="logo">
-        </div>
-        <nav></nav>
-        <div>
-            <img id="skyline" src="../assets/images/skyline-edit.svg" alt="skyline of london">
-        </div>
-    </header>
+		<main>
+			<a id="newPost" href="create_post.html">
+				<span class="icon"><i class="bx bx-plus bx-md"></i></span>
+				<span id="buttonText">New Post</span>
+			</a>
 
-    <main>
+			<h2>Recent Posts</h2>
 
-        <a id="newPost" href="create_post.html">
+			<div id="postTemplate" class="post">
+				<img class="postImage" alt="image" />
+				<div class="postHeader">
+					<h2 class="postTitle"></h2>
+					<div>
+						<ul class="emojis">
+							<li>
+								<span class="emoji icon like"
+									><i class="bx bx-like bx-sm"></i
+								></span>
+								<span class="likeCount"></span>
+							</li>
+							<li>
+								<span class="emoji icon dislike"
+									><i class="bx bx-dislike bx-sm"></i
+								></span>
+								<span class="dislikeCount"></span>
+							</li>
+							<li>
+								<span class="emoji icon surprise"
+									><i class="bx bx-shocked bx-sm"></i
+								></span>
+								<span class="surpriseCount"></span>
+							</li>
+						</ul>
+					</div>
+				</div>
 
-            <span class="icon"><i class='bx bx-plus bx-md'></i></span>
-            <span id="buttonText">New Post</span>
-        </a>
+				<div class="postInfo">
+					<div>
+						<span class="icon"><i class="bx bx-calendar bx-sm"></i></span>
+						<span class="postDate"></span>
+					</div>
+					<div>
+						<span class="icon"><i class="bx bx-map bx-sm"></i></span>
+						<span class="postLocation"></span>
+					</div>
+				</div>
 
-        <h2>Recent Posts</h2>
+				<div>
+					<ul class="labels"></ul>
+				</div>
+				<h3 class="commentHeader">Comments</h3>
+				<div class="comments"></div>
+			</div>
+		</main>
 
-        <div id="postTemplate" class="post">
-            <img class="postImage" src="../assets/images/stock0.jpg" alt="image">
-            <div class="postHeader">
-                <h2 class="postTitle">Post Title</h2>
-                <div>
-                    <ul class="emojis">
-                        <li>
-
-
-                            <span class ="emoji icon like"><i class='bx bx-like bx-sm'></i></span>
-                            <span class="likeCount">0</span>
-                        </li>
-                        <li>
-                            <span class ="emoji icon dislike"><i class='bx bx-dislike bx-sm'></i></span>
-                            <span class="dislikeCount">0</span>
-                        </li>
-                        <li>
-                            <span class ="emoji icon surprise"><i class='bx bx-shocked bx-sm'></i></span>
-                            <span class="surpriseCount">0</span>
-
-                        </li>
-                    </ul>
-
-                </div>
-               
-            </div>
-            
-            <div class="postInfo">
-                <div>
-                    <span class="icon"><i class='bx bx-calendar bx-sm'></i></span>
-                    <span class="postDate">Date</span>
-                </div>
-                <div>
-                    <span class="icon"><i class='bx bx-map bx-sm'></i></span>
-                    <span class="postLocation">Location</span>
-                </div>
-            </div>
-
-            <div>
-                <ul class="labels">
-                </ul>
-            </div>
-            <h3 class="commentHeader">Comments</h3>
-            <div class="comments">
-                
-            </div>
-        </div>
-
-       
-
-    </main>
-
-    <footer>
-        @Copyright Duck & Divers 2022
-    </footer>
-</body>
+		<footer>@Copyright Duck & Divers 2022</footer>
+	</body>
 </html>

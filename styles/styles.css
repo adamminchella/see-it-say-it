@@ -164,6 +164,60 @@ main {
     padding-left: 25px;
 }
 
+#postTemplate > div#image-skeleton {
+    height: 350px;
+    width: 100%;
+}
+
+#postTemplate > div > h2 {
+    width: 200px;
+    height: 1.7rem;
+    margin-left: 10px
+}
+
+#postTemplate > div.postInfo span.postDate {
+    width: 190px;
+    height: 1.1rem;
+    margin-left: -30px
+}
+
+#postTemplate > div.postInfo span.postLocation {
+    width: 60px;
+    height: 1.1rem;
+    margin-left: -10px
+}
+
+#postTemplate > div.postHeader ul.emojis > li {
+    width: 2.5rem;
+}
+
+.skeleton-box {
+    background-color: #DDDBDD;    
+    display: inline-block;   
+    overflow: hidden; 
+    position: relative;
+    height: 2em;
+}
+
+.skeleton-box::after {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,ffffff+20,f6f6f6+60,ffffff+60,ededed+100&0+0,0.2+20,0+20,0.5+60,0+100 */
+background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0.5) 60%, rgba(237,237,237,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 20%,rgba(255,255,255,0.5) 60%,rgba(237,237,237,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 20%,rgba(255,255,255,0.5) 60%,rgba(237,237,237,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ededed',GradientType=1 ); /* IE6-9 */
+
+    animation: shimmer 2s infinite;
+    content: '';
+}
+
 @media screen and (max-width: 800px) {
     .post {
         width: 550px;
@@ -196,4 +250,16 @@ main {
         flex-direction: column;
     }
     
+}
+
+@-webkit-keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
 }

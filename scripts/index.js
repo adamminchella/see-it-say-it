@@ -1,197 +1,190 @@
-// Loads all posts
-async function loadData() {
-  await fetch("https://see-it-say-it-api.herokuapp.com/api/posts")
-    .then((r) => {
-      if (!r.ok) {
-        throw new Error("Network response was not OK");
-      }
-      return r.json();
-    })
-    .then((Data) => {
-      let numPosts = Data.length;
-      for (let i = numPosts - 1; i >= 0; i--) {
-        createCard(Data[i].postId, i);
-        writeToCard(Data[i].postId, i);
-        emojiCount(Data[i].postId);
-      }
-      document.getElementById("postTemplate").style.display = "none";
-    })
-    .catch((error) => {
-      console.error(
-        "There has been a problem with your fetch operation:",
-        error
-      );
-    });
+const cardElement = document.querySelector("#postTemplate").cloneNode(true)
+
+function applySkeleton() {
+	const postTemplate = document.querySelector("#postTemplate")
+	postTemplate.querySelector("img").style.display = "none"
+	let imageSkeleton = document.createElement("div")
+	imageSkeleton.id = "image-skeleton"
+	imageSkeleton.classList.add("skeleton-box")
+	postTemplate.prepend(imageSkeleton)
+	postTemplate.querySelector(".postTitle").classList.add("skeleton-box")
+	let icons = postTemplate.querySelectorAll(".icon")
+	icons.forEach((icon) => {
+		icon.style.visibility = "hidden"
+	})
+	postTemplate.querySelector(".postDate").classList.add("skeleton-box")
+	postTemplate.querySelector(".postLocation").classList.add("skeleton-box")
+	postTemplate.querySelector(".likeCount").classList.add("skeleton-box")
+	postTemplate.querySelector(".dislikeCount").classList.add("skeleton-box")
+	postTemplate.querySelector(".surpriseCount").classList.add("skeleton-box")
+	let emojis = postTemplate.querySelectorAll("li")
+	emojis.forEach((emoji) => {
+		// emoji.children[0].style.visibility = "hidden"
+		emoji.classList = "skeleton-box"
+	})
 }
 
-// Adds data to card
-function writeToCard(cardId, i) {
-  fetch("https://see-it-say-it-api.herokuapp.com/api/posts")
-    .then((r) => {
-      if (!r.ok) {
-        throw new Error("Network response was not OK");
-      }
-      return r.json();
-    })
-    .then((Data) => {
-      let postData = Data[i];
-      let post = document.getElementById(cardId);
-      post.getElementsByClassName("postTitle")[0].textContent = postData.title;
-      post.getElementsByClassName("postDate")[0].textContent = new Date(
-        postData.date
-      )
-        .toString()
-        .slice(0, 24);
-      post.getElementsByClassName("postLocation")[0].textContent =
-        postData.location.postcode;
+// Loads all posts
+function loadData() {
+	applySkeleton()
 
-      let random = Math.floor(Math.random() * 5);
-      post
-        .getElementsByClassName("postImage")[0]
-        .setAttribute("src", `../assets/images/stock${random}.jpg`);
-
-      post.getElementsByClassName("likeCount")[0].textContent =
-        postData.emojis.like;
-      post.getElementsByClassName("dislikeCount")[0].textContent =
-        postData.emojis.dislike;
-      post.getElementsByClassName("surpriseCount")[0].textContent =
-        postData.emojis.surprise;
-
-      let numLabels = postData.labels.length;
-      for (let i = 0; i < numLabels; i++) {
-        let label = document.createElement("li");
-        let text = document.createTextNode(postData.labels[i]);
-        label.appendChild(text);
-        post.getElementsByClassName("labels")[0].appendChild(label);
-      }
-
-      let numComments = postData.comments.length;
-      let comment = document.createElement("div");
-      let commentText = document.createElement('p');
-      let commentTime = document.createElement('p')
-      let gif = document.createElement('img');
-      comment.className = "comment";
-      recentComment = postData.comments[numComments - 1];
-      if (recentComment) {
-        let time = document.createTextNode(new Date(recentComment.date).toString().slice(0, 21));
-        commentTime.appendChild(time)
-        let text = document.createTextNode(recentComment.text);
-        commentText.appendChild(text);
-        if (recentComment.gif == "gif url...") {
-          gif.style.display = 'none';
-        } else {
-          gif.setAttribute('src', recentComment.gif);
-        }
-        comment.appendChild(commentTime)
-        comment.appendChild(commentText);
-        comment.appendChild(gif);
-        
-      }
-      post.getElementsByClassName("comments")[0].appendChild(comment);
-
-      post
-        .getElementsByClassName("postImage")[0]
-        .addEventListener("click", () => {
-          window.location.href = `./post.html?id=${post.id}`;
-        });
-    })
-    .catch((error) => {
-      console.error(
-        "There has been a problem with your fetch operation:",
-        error
-      );
-    });
+	fetch("https://see-it-say-it-api.herokuapp.com/api/posts")
+		.then((res) => res.json())
+		.then((data) => {
+			if (data) {
+				let numPosts = data.length
+				for (let i = numPosts - 1; i >= 0; i--) {
+					createCard(data[i].postId)
+					writeToCard(data[i])
+					showEmojiCount(data[i].postId)
+				}
+				document.querySelector("#postTemplate").style.display = "none"
+			}
+		})
+		.catch((error) => {
+			console.error("There has been a problem with your fetch operation:", error)
+		})
 }
 
 function createCard(id) {
-  let post = document.getElementsByClassName("post")[0];
-  let newCard = post.cloneNode(true);
-  newCard.id = id;
-  document.getElementsByTagName("main")[0].appendChild(newCard);
+	let newCard = cardElement.cloneNode(true)
+	newCard.id = id
+	document.querySelector("main").appendChild(newCard)
 }
 
-function emojiCount(cardId) {
-  const post = document.getElementById(cardId);
-  const emojis = post.getElementsByClassName("emoji");
+// Adds data to card
+function writeToCard(post) {
+	let cardElement = document.getElementById(post.postId)
+	cardElement.querySelector(".postTitle").textContent = post.title
+	cardElement.querySelector(".postDate").textContent = new Date(post.date)
+		.toString()
+		.slice(0, 24)
+	cardElement.querySelector(".postLocation").textContent =
+		post.location.postcode.toUpperCase()
 
-  emojiSet(cardId, "like", true);
-  let emojiParam = JSON.parse(sessionStorage.getItem(cardId));
+	let random = Math.floor(Math.random() * 5)
+	cardElement
+		.querySelector(".postImage")
+		.setAttribute("src", `../assets/images/stock${random}.jpg`)
 
-  for (const emoji of emojis) {
-    let classChange = emoji.childNodes[0].className.replace("x bx-", "x bxs-");
+	cardElement.querySelector(".emojis").id = post.postId
+	cardElement.querySelector(".likeCount").textContent = post.emojis.like
+	cardElement.querySelector(".dislikeCount").textContent = post.emojis.dislike
+	cardElement.querySelector(".surpriseCount").textContent = post.emojis.surprise
 
-    if (emojiParam[emoji.classList[2]]) {
-      emoji.childNodes[0].className = classChange;
-    }
+	let numLabels = post.labels.length
+	for (let i = 0; i < numLabels; i++) {
+		let label = document.createElement("li")
+		let text = document.createTextNode(post.labels[i])
+		label.appendChild(text)
+		cardElement.querySelector(".labels").appendChild(label)
+	}
 
-    emoji.addEventListener("click", () => {
-      emojiParam = JSON.parse(sessionStorage.getItem(cardId));
-      if (emoji.classList.contains("like") && emojiParam["like"] == false) {
-        emojiUpdate(cardId, "like");
-        emoji.childNodes[0].className = classChange;
-        emojiSet(cardId, "like");
-      } else if (
-        emoji.classList.contains("dislike") &&
-        emojiParam["dislike"] == false
-      ) {
-        emojiUpdate(cardId, "dislike");
-        emoji.childNodes[0].className = classChange;
-        emojiSet(cardId, "dislike");
-      } else if (
-        emoji.classList.contains("surprise") &&
-        emojiParam["surprise"] == false
-      ) {
-        emojiUpdate(cardId, "surprise");
-        emoji.childNodes[0].className = classChange;
-        emojiSet(cardId, "surprise");
-      }
-    });
-  }
+	let numComments = post.comments.length
+	let comment = document.createElement("div")
+	let commentText = document.createElement("p")
+	let commentTime = document.createElement("p")
+	let gif = document.createElement("img")
+	comment.className = "comment"
+	recentComment = post.comments[numComments - 1]
+	if (recentComment) {
+		let time = document.createTextNode(
+			new Date(recentComment.date).toString().slice(0, 21)
+		)
+		commentTime.appendChild(time)
+		let text = document.createTextNode(recentComment.text)
+		commentText.appendChild(text)
+		gif.setAttribute("src", recentComment.gif)
+		comment.appendChild(commentTime)
+		comment.appendChild(commentText)
+		comment.appendChild(gif)
+	}
+	cardElement.querySelector(".comments").appendChild(comment)
+
+	cardElement.querySelector(".postImage").addEventListener("click", () => {
+		window.location.href = `./post.html?id=${post.postId}`
+	})
 }
 
-function emojiUpdate(cardId, emoji) {
-  const post = document.getElementById(cardId);
+function showEmojiCount(postId) {
+	//Initialise session storage
+	let session = JSON.parse(sessionStorage.getItem(postId))
+	if (!session)
+		sessionStorage.setItem(
+			postId,
+			JSON.stringify({
+				like: false,
+				dislike: false,
+				surprise: false,
+			})
+		)
 
-  const count = post.getElementsByClassName(`${emoji}Count`)[0];
+	const post = document.getElementById(postId)
+	const emojiElements = post.querySelectorAll(".emoji")
 
-  fetch(`https://see-it-say-it-api.herokuapp.com/api/posts/${post.id}/emojis`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ emoji: emoji }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      count.textContent = data.emojis[emoji];
-    });
+	for (const emojiSpan of emojiElements) {
+		if (session[emojiSpan.classList[2]]) {
+			emojiSpan.children[0].className = updateIconStyle(emojiSpan.children[0])
+		}
+		emojiSpan.addEventListener("click", (event) => onClickEmoji(event, postId))
+	}
 }
 
-function emojiSet(cardId, emoji, set) {
-  let emojiToggles = {
-    like: false,
-    dislike: false,
-    surprise: false,
-  };
-  let emojis = JSON.parse(sessionStorage.getItem(cardId));
-  if (!emojis) {
-    sessionStorage.setItem(cardId, JSON.stringify(emojiToggles));
-  } else if (!set) {
-    emojis[emoji] = true;
-    sessionStorage.setItem(cardId, JSON.stringify(emojis));
-  }
+function updateIconStyle(emojiElement) {
+	return emojiElement.className.replace(
+		/bx-(?=\w{4,})/, //find 'bx-' only where prefixes icon name
+		"bxs-" //change to solid style
+	)
 }
 
-window.addEventListener("load", loadData);
-if (document.body.getElementsByClassName('post').length = 0) {
-  document.getElementById("newPost").style.display = "inline";
+async function onClickEmoji(event, postId) {
+	let clickedEmoji = event.currentTarget.className.split(" ")[2]
+	let isAlreadyClicked = event.target.classList[1].includes("bxs")
+	if (!isAlreadyClicked) {
+		//only update locally if server response ok
+		try {
+			const newEmojiData = await emojiUpdate(postId, clickedEmoji)
+			let countElement = event.target.parentNode.nextElementSibling
+			countElement.textContent = newEmojiData[clickedEmoji]
+			event.target.className = updateIconStyle(event.target)
+			setEmojiSessionStorage(postId, clickedEmoji)
+		} catch (err) {
+			console.warn(err)
+		}
+	}
+}
+
+function setEmojiSessionStorage(postId, emoji) {
+	let emojis = JSON.parse(sessionStorage.getItem(postId))
+	emojis[emoji] = true
+	sessionStorage.setItem(postId, JSON.stringify(emojis))
+}
+
+function emojiUpdate(postId, emoji) {
+	return new Promise((res, rej) => {
+		fetch(`https://see-it-say-it-api.herokuapp.com/api/posts/${postId}/emojis`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ emoji: emoji }),
+		})
+			.then((res) => res.json())
+			.catch((err) => rej(err))
+			.then((data) => res(data.emojis))
+	})
+}
+
+window.addEventListener("load", loadData)
+
+if ((document.body.querySelector(".post").length = 0)) {
+	document.getElementById("newPost").style.display = "inline"
 } else {
-  window.onscroll = function (ev) {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      document.getElementById("newPost").style.display = "none";
-    } else {
-      document.getElementById("newPost").style.display = "inline";
-    }
-  };
+	window.onscroll = function (ev) {
+		if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+			document.getElementById("newPost").style.display = "none"
+		} else {
+			document.getElementById("newPost").style.display = "inline"
+		}
+	}
 }
-
